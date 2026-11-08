@@ -9,12 +9,26 @@ L'application est 100% prête pour GitHub Pages avec :
 - Workflow GitHub Actions prêt à l'emploi (`.github/workflows/deploy.yml`).
 - Support de l'historique et des routes avec `404.html` et `.nojekyll`.
 
-### Étapes d'activation sur GitHub :
+### Option 1 : Déploiement automatique via GitHub Actions (Recommandé)
 1. Poussez ce projet sur votre dépôt GitHub (`git push origin main`).
-2. Rendez-vous sur votre dépôt GitHub dans **Settings** > **Pages**.
-3. Dans la section **Build and deployment** :
-   - Sous **Source**, sélectionnez **GitHub Actions**.
-4. Le workflow se lance automatiquement à chaque `push` sur la branche `main` (ou `master`) et déploie le site en quelques secondes !
+2. Sur votre dépôt GitHub, allez dans **Settings** > **Pages**.
+3. Dans la section **Build and deployment** > **Source**, choisissez **GitHub Actions**.
+4. Le workflow `.github/workflows/deploy.yml` compile et déploie le site automatiquement.
+
+### Option 2 : Déploiement direct avec branche `gh-pages`
+Si vous préférez déployer depuis une branche `gh-pages` :
+1. Exécutez simplement :
+   ```bash
+   npm run deploy
+   ```
+2. Dans **Settings** > **Pages** de GitHub, choisissez **Deploy from a branch** et sélectionnez la branche `gh-pages`.
+
+### Option 3 : Déploiement Cloud Run / Docker / AI Studio
+Un serveur Node.js/Express de production (`server.js`) est inclus :
+```bash
+npm run build
+npm start
+```
 
 ---
 
