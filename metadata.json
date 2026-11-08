@@ -1,0 +1,6 @@
+{
+  "name": "SWADE Interface Zero - Cyberpunk Character Generator",
+  "description": "Générateur et gestionnaire de personnages cyberpunk pour Savage Worlds (SWADE) et Interface Zero 2.0 / 3.0 avec tirage aléatoire, calcul automatique des traits dérivés, implants et export PDF remplissable.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
