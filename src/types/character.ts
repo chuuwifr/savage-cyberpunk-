@@ -48,6 +48,10 @@ export interface ImplantItem {
   parryBonus?: number;
   firewallBonus?: number;
   strainReduction?: number;
+  imageUrl?: string;
+  manufacturer?: string;
+  rarity?: string;
+  flavorQuote?: string;
 }
 
 export type PowerLevel = 'voyou' | 'soldat' | 'hyperchrome' | 'elite';
@@ -63,7 +67,7 @@ export interface PowerLevelConfig {
 export interface WeaponItem {
   id: string;
   name: string;
-  category: 'Cac' | 'Pistolet' | 'Pistolet-mitrailleur' | 'Fusil' | 'Fusil à pompe' | 'Lourd' | 'Grenade';
+  category: 'Cac' | 'Pistolet' | 'Pistolet-mitrailleur' | 'Fusil' | 'Fusil à pompe' | 'Lourd' | 'Grenade' | 'Énergie' | 'Spécial' | 'Mêlée' | 'Arme de poing' | 'Fusils & Mitraillettes' | string;
   range: string;
   damage: string;
   rof: number;
@@ -73,27 +77,45 @@ export interface WeaponItem {
   cost: number;
   notes: string;
   ap?: number; // Pénétration d'armure
+  imageUrl?: string;
+  rarity?: string;
+  manufacturer?: string;
+  origin?: string;
+  flavorQuote?: string;
+  tags?: string[];
 }
 
 export interface ArmorItem {
   id: string;
   name: string;
-  category: 'Civil' | 'Léger' | 'Moyen' | 'Lourd' | 'Casque' | 'Bouclier';
+  category: 'Civil' | 'Léger' | 'Moyen' | 'Lourd' | 'Casque' | 'Bouclier' | 'Exoarmure' | 'Tactique' | string;
   armorBonus: number;
   coverage: string;
   weight: number;
   cost: number;
   notes: string;
+  imageUrl?: string;
+  rarity?: string;
+  manufacturer?: string;
+  origin?: string;
+  flavorQuote?: string;
+  tags?: string[];
 }
 
 export interface GearItem {
   id: string;
   name: string;
-  category: 'Électronique' | 'Survie' | 'Outil' | 'Médical' | 'Munitions' | 'Divers';
+  category: 'Électronique' | 'Survie' | 'Outil' | 'Médical' | 'Munitions' | 'Divers' | 'Drogue' | 'Explosif' | 'TAP' | 'Accessoire' | 'Mod' | 'Pharma' | string;
   weight: number;
   cost: number;
   notes: string;
   quantity?: number;
+  imageUrl?: string;
+  rarity?: string;
+  manufacturer?: string;
+  origin?: string;
+  flavorQuote?: string;
+  tags?: string[];
 }
 
 export interface DroneItem {
@@ -107,12 +129,18 @@ export interface DroneItem {
   cost: number;
   sensor: string;
   notes: string;
+  imageUrl?: string;
+  rarity?: string;
+  manufacturer?: string;
+  origin?: string;
+  flavorQuote?: string;
+  tags?: string[];
 }
 
 export interface EdgeDefinition {
   id: string;
   name: string;
-  category: 'Arrière-plan' | 'Combat' | 'Commandement' | 'Professionnel' | 'Social' | 'Étrange' | 'Légendaire' | 'Cyber';
+  category: 'Arrière-plan' | 'Combat' | 'Commandement' | 'Pouvoir' | 'Professionnel' | 'Social' | 'Étrange' | 'Légendaire' | 'Cyber';
   requirements: string;
   description: string;
   isCyber?: boolean;

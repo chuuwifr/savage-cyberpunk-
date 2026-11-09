@@ -78,3 +78,131 @@ test('generateRandomCharacter produces complete functional character sheet', () 
   assert.ok(char.hindrances.length > 0);
   assert.strictEqual(char.bennies, 3);
 });
+
+test('calculateDerivedStats properly accounts for SWADE Edges and Hindrances', () => {
+  const char = createEmptyCharacter();
+  char.attributes.vigueur = 'd8'; // base toughness = 6
+  char.skills['Combat'] = 'd8'; // base parry = 6
+
+  // Add SWADE edges & hindrances
+  char.edges.push({
+    id: 'veloce',
+    name: 'Véloce',
+    category: 'Arrière-plan',
+    requirements: 'Novice, Agilité d6',
+    description: 'Allure +2 cases et dé de course augmenté d’un cran.'
+  });
+  char.edges.push({
+    id: 'grand_blocage',
+    name: 'Grand blocage',
+    category: 'Combat',
+    requirements: 'Vétéran, Blocage',
+    description: 'Parade +2.'
+  });
+  char.edges.push({
+    id: 'costaud',
+    name: 'Costaud',
+    category: 'Arrière-plan',
+    requirements: 'Novice, Force d6, Vigueur d6',
+    description: 'Taille +1 et donc Résistance +1.'
+  });
+
+  const derived = calculateDerivedStats(char);
+  assert.strictEqual(derived.pace, 8); // 6 + 2 (Véloce)
+  assert.strictEqual(derived.runningDie, 'd8'); // d6 -> d8
+  assert.strictEqual(derived.parry, 8); // 6 + 2 (Grand blocage)
+  assert.strictEqual(derived.toughnessBase, 7); // 6 + 1 (Costaud)
+
+  // Now add Frêle hindrance (-1 Toughness) and Lent Majeur (-2 Pace)
+  char.hindrances.push({
+    id: 'frele',
+    name: 'Frêle',
+    severity: 'Mineur',
+    description: 'Résistance -1.'
+  });
+  char.hindrances.push({
+    id: 'lent',
+    name: 'Lent',
+    severity: 'Majeur',
+    description: 'Allure -2.'
+  });
+
+  const derivedAfter = calculateDerivedStats(char);
+  assert.strictEqual(derivedAfter.pace, 6); // 8 - 2 (Lent Majeur)
+  assert.strictEqual(derivedAfter.toughnessBase, 6); // 7 - 1 (Frêle)
+});
+
+test('Tech Compendium Malmart 2090 catalog items are integrated and calculate correctly', async () => {
+  const { WEAPONS_CATALOG, ARMOR_CATALOG, GEAR_CATALOG } = await import('../src/data/interfaceZeroData.ts');
+
+  // Verify Energy and Special weapons exist
+  const energyWeapons = WEAPONS_CATALOG.filter(w => w.category === 'Énergie');
+  const specialWeapons = WEAPONS_CATALOG.filter(w => w.category === 'Spécial');
+  assert.ok(energyWeapons.length >= 5, 'Should have multiple energy weapons');
+  assert.ok(specialWeapons.length >= 4, 'Should have multiple special weapons');
+
+  // Verify Exoarmors exist
+  const exoarmors = ARMOR_CATALOG.filter(a => a.category === 'Exoarmure');
+  assert.ok(exoarmors.length >= 3, 'Should have multiple exoarmors in catalog');
+
+  // Verify Drugs, TAP, Explosives in gear
+  const drugs = GEAR_CATALOG.filter(g => g.category === 'Drogue');
+  const tapGear = GEAR_CATALOG.filter(g => g.category === 'TAP');
+  const explosives = GEAR_CATALOG.filter(g => g.category === 'Explosif');
+  assert.ok(drugs.length >= 4, 'Should have cyberdrugs');
+  assert.ok(tapGear.length >= 3, 'Should have TAP software and hardware');
+  assert.ok(explosives.length >= 3, 'Should have explosives');
+
+  // Verify weight and cost calculations with tech equipment
+  const char = createEmptyCharacter();
+  char.attributes.force = 'd6'; // Max weight = 6 * 2.5 = 15 kg
+  char.weapons.push(energyWeapons[0]); // Laser carbine ~ 3.5 kg
+  char.armor.push(exoarmors[0]); // Exo ~ 18 kg
+  char.gear.push({ ...drugs[0], quantity: 2 });
+
+  const derived = calculateDerivedStats(char);
+  assert.ok(derived.carriedWeight > 20, 'Carried weight should include weapon, exoarmor and gear');
+  assert.strictEqual(derived.isOverloaded, true, 'Character should be overloaded beyond 15 kg');
+  assert.ok(derived.totalGearCost > 10000, 'Total gear cost should sum all items');
+});
+
+test('Cyberpunk & Interface Zero Compendium has 320+ items and equips correctly', async () => {
+  const { COMPENDIUM_ITEMS } = await import('../src/data/compendiumItems.ts');
+  const { equipCompendiumItem } = await import('../src/utils/compendiumAdapter.ts');
+
+  assert.ok(COMPENDIUM_ITEMS.length >= 320, `Should have at least 320 items from chuuwifr catalogue, found ${COMPENDIUM_ITEMS.length}`);
+
+  // Test equipping Malorian Arms 3516 (Johnny Silverhand)
+  const malorian = COMPENDIUM_ITEMS.find(it => it.id === 'malorian-3516');
+  assert.ok(malorian, 'Malorian Arms 3516 must exist');
+  assert.strictEqual(malorian.rarity, 'legendary');
+
+  const char = createEmptyCharacter();
+  char.credits = 20000;
+
+  const resWeapon = equipCompendiumItem(malorian, char, true);
+  assert.strictEqual(resWeapon.categoryType, 'weapons');
+  assert.strictEqual(resWeapon.updatedChar.weapons.length, 1);
+  assert.strictEqual(resWeapon.updatedChar.weapons[0].name, 'Malorian Arms 3516');
+  assert.strictEqual(resWeapon.updatedChar.weapons[0].damage, '2d10');
+  assert.strictEqual(resWeapon.updatedChar.weapons[0].ap, 4);
+  assert.strictEqual(resWeapon.updatedChar.credits, 8000); // 20000 - 12000 cr
+
+  // Test equipping Axolotl cyberware
+  const axolotl = COMPENDIUM_ITEMS.find(it => it.id === 'axolotl-cortex');
+  assert.ok(axolotl, 'Axolotl must exist');
+  const resImplant = equipCompendiumItem(axolotl, resWeapon.updatedChar, false);
+  assert.strictEqual(resImplant.categoryType, 'implants');
+  assert.strictEqual(resImplant.updatedChar.implants.length, 1);
+  assert.strictEqual(resImplant.updatedChar.implants[0].name, 'Axolotl (Réducteur de Délai Neuronal)');
+  assert.strictEqual(resImplant.updatedChar.implants[0].strain, 4);
+
+  // Test equipping Ravenlocke Bulwark armor
+  const bulwark = COMPENDIUM_ITEMS.find(it => it.id === 'rs-bulwark-riot');
+  assert.ok(bulwark, 'Bulwark armor must exist');
+  const resArmor = equipCompendiumItem(bulwark, resImplant.updatedChar, false);
+  assert.strictEqual(resArmor.categoryType, 'armor');
+  assert.strictEqual(resArmor.updatedChar.armor.length, 1);
+  assert.strictEqual(resArmor.updatedChar.armor[0].armorBonus, 6);
+});
+

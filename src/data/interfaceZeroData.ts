@@ -769,7 +769,23 @@ export const IMPLANTS_CATALOG: ImplantItem[] = [
 ];
 
 export const WEAPONS_CATALOG: WeaponItem[] = [
-  // Mêlée
+  // ==========================================
+  // --- ARMES DE MÊLÉE (TABLE 3.16) ---
+  // ==========================================
+  {
+    id: 'so_ktana_miyamoto',
+    name: 'SO K-Tana Miyamoto',
+    category: 'Cac',
+    range: 'Contact',
+    damage: 'FOR+d8+2',
+    rof: 1,
+    shots: '-',
+    minStr: 'd6',
+    weight: 3,
+    cost: 1000,
+    ap: 4,
+    notes: 'PA 4, Allonge 0, Tranchant monofilament Tungstène-Titane replié.'
+  },
   {
     id: 'katana_monofilament',
     name: 'Katana Monofilament Carbone',
@@ -782,38 +798,254 @@ export const WEAPONS_CATALOG: WeaponItem[] = [
     weight: 2,
     cost: 2500,
     ap: 4,
-    notes: 'PA 4, Parade +1, Tranchant absolu'
+    notes: 'PA 4, Parade +1, Lame d’acier noir équilibrée.'
   },
   {
-    id: 'dague_monomoleculaire',
-    name: 'Dague Monomoléculaire',
+    id: 'so_monofouet',
+    name: 'Monofouet Shogun Outfitters',
     category: 'Cac',
-    range: 'Contact',
-    damage: 'FOR+d4+2',
+    range: 'Portée 3 cases',
+    damage: 'AGI+d6',
     rof: 1,
     shots: '-',
     minStr: 'd4',
-    weight: 0.5,
-    cost: 800,
-    ap: 2,
-    notes: 'PA 2, Facile à dissimuler (+2)'
+    weight: 1,
+    cost: 300,
+    ap: 6,
+    notes: 'PA 6, Allonge 3, filament rétractable (d10 sur Relance, danger si 1 sur dé).'
   },
   {
-    id: 'baton_choc_energise',
-    name: 'Matraque Énergétique à Impulsion',
+    id: 'epee_tronconneuse_eviscerator',
+    name: 'Épée-tronçonneuse WT Eviscerator',
+    category: 'Cac',
+    range: 'Contact',
+    damage: 'FOR+d10',
+    rof: 1,
+    shots: 'Batterie 48h',
+    minStr: 'd8',
+    weight: 5,
+    cost: 250,
+    ap: 2,
+    notes: 'PA 2, Dents rotatives haute vélocité, requiert une batterie.'
+  },
+  {
+    id: 'hache_tronconneuse_decapitator',
+    name: 'Hache-tronçonneuse WT Decapitator',
+    category: 'Cac',
+    range: 'Contact',
+    damage: 'FOR+d12+4',
+    rof: 1,
+    shots: 'Batterie 48h',
+    minStr: 'd10',
+    weight: 25,
+    cost: 500,
+    ap: 2,
+    notes: 'PA 2, À deux mains, -1 Parade, déchiquète le blindage.'
+  },
+  {
+    id: 'dague_tronconneuse_disemboweler',
+    name: 'Dague-tronçonneuse WT Disemboweler',
     category: 'Cac',
     range: 'Contact',
     damage: 'FOR+d6',
     rof: 1,
-    shots: '20 charges',
+    shots: 'Batterie 48h',
+    minStr: 'd6',
+    weight: 2.5,
+    cost: 150,
+    ap: 2,
+    notes: 'PA 2, Couteau à chaîne compact pour combat rapproché.'
+  },
+  {
+    id: 'exogriffes_aga',
+    name: 'Exogriffes AGA (Act of God)',
+    category: 'Cac',
+    range: 'Contact',
+    damage: 'FOR+d10',
+    rof: 1,
+    shots: 'Alimentation dorsale',
+    minStr: 'd8',
+    weight: 15,
+    cost: 450,
+    ap: 4,
+    notes: 'PA 4, Gants motorisés lourds en céramique dynamoélectrique.'
+  },
+  {
+    id: 'couteau_combat_duke_mccoy',
+    name: 'Couteau de Combat UP Duke McCoy',
+    category: 'Cac',
+    range: 'Contact',
+    damage: 'FOR+d6+1',
+    rof: 1,
+    shots: '-',
+    minStr: 'd4',
+    weight: 0.5,
+    cost: 30,
+    notes: '+1 en Force contre les tentatives de désarmement.'
+  },
+  {
+    id: 'couteau_automatique_ironfang',
+    name: 'Couteau Automatique UP IronFang',
+    category: 'Cac',
+    range: 'Contact',
+    damage: 'FOR+d4',
+    rof: 1,
+    shots: '-',
+    minStr: 'd4',
+    weight: 0.2,
+    cost: 25,
+    notes: 'Déploiement par ressort NanoSteel en action gratuite.'
+  },
+  {
+    id: 'couteau_vibrant_lacerator',
+    name: 'Couteau Vibrant WT Lacerator',
+    category: 'Cac',
+    range: 'Contact',
+    damage: 'FOR+d4',
+    rof: 1,
+    shots: 'Batterie',
     minStr: 'd4',
     weight: 1.5,
-    cost: 600,
-    notes: 'Non létal, test de Vigueur à -2 ou Secoué/Inconscient'
+    cost: 40,
+    ap: 2,
+    notes: 'PA 2, Lame à micro-oscillations haute fréquence.'
+  },
+  {
+    id: 'epee_papillons_whirlwind',
+    name: 'Épée Papillon SO Whirlwind',
+    category: 'Cac',
+    range: 'Contact',
+    damage: 'FOR+d6',
+    rof: 1,
+    shots: '-',
+    minStr: 'd6',
+    weight: 1.5,
+    cost: 10,
+    ap: 2,
+    notes: 'PA 2, Épées doubles de Kung-fu équilibrées.'
+  },
+  {
+    id: 'fouet_aga_dominatrix',
+    name: 'Fouet Électrique AGA Dominatrix',
+    category: 'Cac',
+    range: 'Portée 3 cases',
+    damage: 'Spécial',
+    rof: 1,
+    shots: 'Batterie',
+    minStr: 'd4',
+    weight: 1.5,
+    cost: 220,
+    notes: 'Non létal, douleur neuro-électrique : jet d’Âme opposé ou Ralenti.'
+  },
+  {
+    id: 'gants_etourdissants_jointlock',
+    name: 'Gants Étourdissants RS Jointlock',
+    category: 'Cac',
+    range: 'Contact',
+    damage: 'Non létal',
+    rof: 1,
+    shots: 'Batterie',
+    minStr: 'd4',
+    weight: 0.5,
+    cost: 25,
+    notes: '+2 au jet de toucher (+2 Combat), Vigueur à -2 ou Secoué.'
+  },
+  {
+    id: 'matraque_securite_rs',
+    name: 'Matraque de Sécurité Ravenlocke',
+    category: 'Cac',
+    range: 'Contact',
+    damage: 'FOR+d4',
+    rof: 1,
+    shots: 'Batterie',
+    minStr: 'd4',
+    weight: 1,
+    cost: 90,
+    notes: '+1 en Parade, Décharge légale : Vigueur -2 ou Secoué.'
+  },
+  {
+    id: 'matraque_shillelagh_havoc',
+    name: 'Matraque WT Shillelagh Havoc',
+    category: 'Cac',
+    range: 'Contact',
+    damage: 'FOR+d6',
+    rof: 1,
+    shots: 'Batterie',
+    minStr: 'd6',
+    weight: 1,
+    cost: 150,
+    notes: 'Condensateur de choc : sur Relance, projette à 1d4 cases et Secoue.'
+  },
+  {
+    id: 'so_dragonfly_tessen',
+    name: 'Éventail de Combat SO Dragonfly Tessen',
+    category: 'Cac',
+    range: 'Contact ou 4/8/16',
+    damage: 'FOR+d4',
+    rof: 1,
+    shots: '-',
+    minStr: 'd4',
+    weight: 0.5,
+    cost: 10,
+    notes: '+1 en Parade, utilisable aussi comme arme de jet (4/8/16).'
+  },
+  {
+    id: 'so_manriki_gusari',
+    name: 'Chaîne de Combat SO Manriki-Gusari',
+    category: 'Cac',
+    range: 'Portée 1 case',
+    damage: 'FOR+d4',
+    rof: 1,
+    shots: '-',
+    minStr: 'd4',
+    weight: 0.5,
+    cost: 15,
+    notes: 'Chaîne lestée d’immobilisation non létale et garrot.'
+  },
+  {
+    id: 'bki_shotfist',
+    name: 'Gantelet Percuteur BKI Shotfist',
+    category: 'Cac',
+    range: 'Contact',
+    damage: 'FOR+d4 / 2d6',
+    rof: 1,
+    shots: 2,
+    minStr: 'd6',
+    weight: 4.5,
+    cost: 175,
+    notes: 'Gantelet blindé intégrant deux cartouches de calibre 12 déclenchées à l’impact.'
+  },
+  {
+    id: 'bki_swordgun',
+    name: 'Épée-Revolver BKI Swordgun',
+    category: 'Cac',
+    range: 'Contact ou 12/24/48',
+    damage: 'FOR+d6 / 2d6',
+    rof: 1,
+    shots: 6,
+    minStr: 'd6',
+    weight: 6,
+    cost: 400,
+    ap: 1,
+    notes: 'Lame d’acier intégrant un canon 9mm le long de la garde.'
+  },
+  {
+    id: 'dague_ceramique',
+    name: 'Dague en Céramique Furtive',
+    category: 'Cac',
+    range: 'Contact',
+    damage: 'FOR+d4+1',
+    rof: 1,
+    shots: '-',
+    minStr: 'd4',
+    weight: 0.4,
+    cost: 200,
+    ap: 1,
+    notes: 'Indétectable aux portiques magnétiques, PA 1.'
   },
   {
     id: 'cle_a_molette_choc',
-    name: 'Clé Lourde Modifiée',
+    name: 'Clé Lourde Modifiée de Mécano',
     category: 'Cac',
     range: 'Contact',
     damage: 'FOR+d6',
@@ -822,10 +1054,178 @@ export const WEAPONS_CATALOG: WeaponItem[] = [
     minStr: 'd6',
     weight: 3,
     cost: 100,
-    notes: 'Outil improvisé résistant'
+    notes: 'Outil de frappe brutal improvisé par les rafistoleurs.'
+  },
+  {
+    id: 'tronconneuse_de_poche',
+    name: 'Mini-Tronçonneuse de Ruelle',
+    category: 'Cac',
+    range: 'Contact',
+    damage: 'FOR+d8',
+    rof: 1,
+    shots: 'Batterie',
+    minStr: 'd6',
+    weight: 3.5,
+    cost: 220,
+    ap: 2,
+    notes: 'Arme de prédilection des gangers, PA 2.'
   },
 
-  // Pistolets
+  // ==========================================
+  // --- PISTOLETS & REVOLVERS (TABLE 3.17) ---
+  // ==========================================
+  {
+    id: 'aga_black_knight',
+    name: 'AGA Black Knight (Édition Limitée)',
+    category: 'Pistolet',
+    range: '12/24/48',
+    damage: '2d8',
+    rof: 2,
+    shots: 6,
+    minStr: 'd6',
+    weight: 1.5,
+    cost: 500,
+    ap: 2,
+    notes: 'PA 2, Revolver double canon (mode 1 ou 2 coups simultanés), baïonnette intégrée.'
+  },
+  {
+    id: 'aga_cyberchromium_rat',
+    name: 'AGA Cyberchromium Rat .75',
+    category: 'Pistolet',
+    range: '12/24/48',
+    damage: '2d10',
+    rof: 1,
+    shots: 5,
+    minStr: 'd12',
+    weight: 2,
+    cost: 500,
+    ap: 4,
+    notes: 'PA 4, Calibre .75 en titane pur et chrome poli, pouvoir d’arrêt effroyable.'
+  },
+  {
+    id: 'aga_thunderbolt',
+    name: 'AGA Thunderbolt',
+    category: 'Pistolet',
+    range: '12/24/48',
+    damage: '2d8+1',
+    rof: 1,
+    shots: 15,
+    minStr: 'd8',
+    weight: 2,
+    cost: 150,
+    ap: 4,
+    notes: 'PA 4, Semi-auto, arme de poing intimidante (+1 aux tests d’Intimidation).'
+  },
+  {
+    id: 'asfa_watchdog',
+    name: 'ASFA Watchdog 10mm (Foley Arms)',
+    category: 'Pistolet',
+    range: '12/24/48',
+    damage: '2d8',
+    rof: 1,
+    shots: 12,
+    minStr: 'd6',
+    weight: 1.5,
+    cost: 100,
+    ap: 2,
+    notes: 'PA 2, Semi-auto, culasse à recul accéléré, arme officielle de la police d’Atlantica.'
+  },
+  {
+    id: 'ht_ht9',
+    name: 'Hostile Takeover HT-9 (9mm)',
+    category: 'Pistolet',
+    range: '12/24/48',
+    damage: '2d6',
+    rof: 1,
+    shots: 5,
+    minStr: 'd4',
+    weight: 1,
+    cost: 100,
+    ap: 1,
+    notes: 'PA 1, Pistolet de défense personnelle de cadre corpo, format ultra-plat.'
+  },
+  {
+    id: 'pd_saturday_night',
+    name: 'PD Saturday Night Sprawl Special (.44)',
+    category: 'Pistolet',
+    range: '12/24/48',
+    damage: '2d6+1',
+    rof: 1,
+    shots: 6,
+    minStr: 'd6',
+    weight: 2,
+    cost: 100,
+    ap: 2,
+    notes: 'PA 2, Revolver .44 Magnum classique légendaire, finition acier noir.'
+  },
+  {
+    id: 'sc_urchin',
+    name: 'Street Chic Urchin 9mm',
+    category: 'Pistolet',
+    range: '10/20/40',
+    damage: '2d6',
+    rof: 2,
+    shots: 16,
+    minStr: 'd4',
+    weight: 1.5,
+    cost: 100,
+    ap: 1,
+    notes: 'PA 1, L’arme jetable la plus courante du Sprawl urbain.'
+  },
+  {
+    id: 'sr_street_talker',
+    name: 'Sentinel Rock Street Talker 6mm',
+    category: 'Pistolet',
+    range: '5/10/20',
+    damage: '2d4+1',
+    rof: 1,
+    shots: 6,
+    minStr: 'd4',
+    weight: 1.5,
+    cost: 75,
+    ap: 1,
+    notes: 'PA 1, Semi-auto, arme de secours d’autodéfense civile ultra-économique.'
+  },
+  {
+    id: 'up_columbus',
+    name: 'Urban Punk Columbus Double Canon',
+    category: 'Pistolet',
+    range: '10/20/40',
+    damage: '2d6+1',
+    rof: 1,
+    shots: 12,
+    minStr: 'd6',
+    weight: 2,
+    cost: 350,
+    notes: 'Semi-auto double détente étagée, compensateur de recul en acier noir.'
+  },
+  {
+    id: 'wt_216lb_wastelander',
+    name: 'WT-216LB Wastelander',
+    category: 'Pistolet',
+    range: '15/30/60',
+    damage: '2d6+1',
+    rof: 1,
+    shots: 16,
+    minStr: 'd6',
+    weight: 2,
+    cost: 125,
+    ap: 1,
+    notes: 'PA 1, Canon long de précision à longue portée pour mercenaires nomades.'
+  },
+  {
+    id: 'pistolet_gyroc_127',
+    name: 'Pistolet Gyroc Sentinel Rock 12.7mm',
+    category: 'Pistolet',
+    range: '12/24/48',
+    damage: '3d6',
+    rof: 1,
+    shots: 10,
+    minStr: 'd6',
+    weight: 1.5,
+    cost: 400,
+    notes: 'Arme lourde de poing, tire des micro-roquettes gyroscopiques autoguidées.'
+  },
   {
     id: 'pistolet_ares_predator',
     name: 'Pistolet Lourd Ares Predator V',
@@ -838,21 +1238,7 @@ export const WEAPONS_CATALOG: WeaponItem[] = [
     weight: 2,
     cost: 1200,
     ap: 2,
-    notes: 'PA 2, Smartlink intégré, Semi-auto'
-  },
-  {
-    id: 'pistolet_leger_silencieux',
-    name: 'Pistolet Léger Silencieux Street-Ghost',
-    category: 'Pistolet',
-    range: '10/20/40',
-    damage: '2d6-1',
-    rof: 1,
-    shots: 12,
-    minStr: 'd4',
-    weight: 1,
-    cost: 750,
-    ap: 1,
-    notes: 'Silencieux intégré, PA 1, quasi inaudible'
+    notes: 'PA 2, Smartlink intégré, Semi-auto corpo réputé.'
   },
   {
     id: 'revolver_magnum_44_cyber',
@@ -866,7 +1252,21 @@ export const WEAPONS_CATALOG: WeaponItem[] = [
     weight: 2.5,
     cost: 1500,
     ap: 2,
-    notes: 'PA 2, Recul lourd, Arrêt net'
+    notes: 'PA 2, Recul lourd, Arrêt net à longue distance.'
+  },
+  {
+    id: 'pistolet_leger_silencieux',
+    name: 'Pistolet Léger Silencieux Street-Ghost',
+    category: 'Pistolet',
+    range: '10/20/40',
+    damage: '2d6-1',
+    rof: 1,
+    shots: 12,
+    minStr: 'd4',
+    weight: 1,
+    cost: 750,
+    ap: 1,
+    notes: 'Silencieux intégré au canon, quasi inaudible (-4 en Perception).'
   },
   {
     id: 'taser_hyper_choc',
@@ -879,27 +1279,111 @@ export const WEAPONS_CATALOG: WeaponItem[] = [
     minStr: 'd4',
     weight: 1,
     cost: 450,
-    notes: 'Non létal, cible Secouée et -2 à tous les jets pendant 3 rounds'
+    notes: 'Non létal, cible Secouée et -2 à tous les jets pendant 3 rounds.'
+  },
+  {
+    id: 'pistolet_or_et_platine',
+    name: 'Pistolet de Luxe Platine & Or 9mm',
+    category: 'Pistolet',
+    range: '12/24/48',
+    damage: '2d6',
+    rof: 1,
+    shots: 8,
+    minStr: 'd4',
+    weight: 1.2,
+    cost: 4500,
+    notes: 'Finition joaillerie pour idoles et VIP (+1 en Persuasion/Séduction).'
+  },
+  {
+    id: 'pistolet_clous_industriel_modifie',
+    name: 'Cloueuse Pneumatique Haute Pression',
+    category: 'Pistolet',
+    range: '5/10/20',
+    damage: '2d4+2',
+    rof: 1,
+    shots: 30,
+    minStr: 'd6',
+    weight: 3,
+    cost: 150,
+    notes: 'Outil de chantier débridé tirant des clous en acier trempé.'
   },
 
-  // PM & SMG
+  // ==========================================
+  // --- MITRAILLETTES & SMG (TABLE 3.18) ---
+  // ==========================================
   {
-    id: 'smg_micro_uzi',
-    name: 'Pistolet-Mitrailleur Micro-Uzi Cyber',
+    id: 'mosquito_storm_ms2090',
+    name: 'Pistolet-Mitrailleur Mosquito Storm MS-2090',
+    category: 'Pistolet-mitrailleur',
+    range: '15/30/60',
+    damage: '2d6-2',
+    rof: 3,
+    shots: 36,
+    minStr: 'd4',
+    weight: 1.5,
+    cost: 300,
+    ap: 2,
+    notes: 'PA 2, Tir automatique, balles sans douille 4.5mm haute vélocité, triple canon.'
+  },
+  {
+    id: 'rs_p9d',
+    name: 'Ravenlocke Securities P9D Bullpup',
+    category: 'Pistolet-mitrailleur',
+    range: '12/24/48',
+    damage: '2d6-1',
+    rof: 3,
+    shots: 100,
+    minStr: 'd4',
+    weight: 1.5,
+    cost: 400,
+    ap: 3,
+    notes: 'PA 3, Tir auto et rafales, chargeur hélicoïdal 100 coups, compacité bullpup.'
+  },
+  {
+    id: 'up_gutterpunk',
+    name: 'Urban Punk Gutterpunk .45 ACP',
+    category: 'Pistolet-mitrailleur',
+    range: '12/24/48',
+    damage: '2d6+1',
+    rof: 3,
+    shots: 30,
+    minStr: 'd6',
+    weight: 1.5,
+    cost: 500,
+    ap: 1,
+    notes: 'PA 1, Tir auto et rafale, basé sur le MAC-10 légendaire, silencieux adaptable.'
+  },
+  {
+    id: 'wt_wanderer',
+    name: 'Wasteland Traders Wanderer 9mm',
     category: 'Pistolet-mitrailleur',
     range: '12/24/48',
     damage: '2d6',
     rof: 3,
     shots: 30,
     minStr: 'd6',
+    weight: 1.5,
+    cost: 400,
+    ap: 1,
+    notes: 'PA 1, Tir auto et rafale, increvable en milieu poussiéreux ou hostile.'
+  },
+  {
+    id: 'smg_micro_uzi',
+    name: 'Micro-Uzi Cyber 9mm',
+    category: 'Pistolet-mitrailleur',
+    range: '12/24/48',
+    damage: '2d6',
+    rof: 3,
+    shots: 32,
+    minStr: 'd6',
     weight: 2.5,
     cost: 1100,
     ap: 1,
-    notes: 'Tir automatique, PA 1'
+    notes: 'PA 1, Cadence élevée, crosse rétractable.'
   },
   {
     id: 'pistolet_mitrailleur_p90',
-    name: 'PM FN P90 Bullpup Tactique',
+    name: 'FN P90 Tactical 5.7mm',
     category: 'Pistolet-mitrailleur',
     range: '12/24/48',
     damage: '2d6+1',
@@ -909,10 +1393,221 @@ export const WEAPONS_CATALOG: WeaponItem[] = [
     weight: 3,
     cost: 1800,
     ap: 2,
-    notes: 'PA 2, Grande capacité de chargeur (50 billes)'
+    notes: 'PA 2, Grande capacité de 50 coups, cartouche perforante.'
   },
 
-  // Fusils
+  // ==========================================
+  // --- FUSILS À POMPE (TABLE 3.18) ---
+  // ==========================================
+  {
+    id: 'aga_thunder_cal20',
+    name: 'Fusil à Pompe AGA Thunder Cal. 20',
+    category: 'Fusil à pompe',
+    range: '10/20/40',
+    damage: '1-3d6',
+    rof: 1,
+    shots: 6,
+    minStr: 'd4',
+    weight: 1,
+    cost: 200,
+    notes: '+2 aux tests de Discrétion pour dissimuler cette arme sous un manteau.'
+  },
+  {
+    id: 'bki_tiger_claw',
+    name: 'Shotgun d’Assaut Rapproché BKI Tiger Claw',
+    category: 'Fusil à pompe',
+    range: '15/30/60',
+    damage: '1-3d4',
+    rof: 2,
+    shots: 12,
+    minStr: 'd6',
+    weight: 2.5,
+    cost: 900,
+    ap: 2,
+    notes: 'PA 2, Fragments composites broyeurs, utilisable en mêlée à bout portant.'
+  },
+  {
+    id: 'wt_bd4dy_cal12',
+    name: 'Fusil à Pompe Cal. 12 WT BD-4DY (Big Daddy)',
+    category: 'Fusil à pompe',
+    range: '12/24/48',
+    damage: '1-3d6',
+    rof: 1,
+    shots: 6,
+    minStr: 'd6',
+    weight: 1.5,
+    cost: 400,
+    notes: 'Semi-automatique, puissance d’arrêt brutale face aux meutes et mutagènes.'
+  },
+  {
+    id: 'fusil_pompe_combat_auto',
+    name: 'Fusil de Pompe Automatique Pancor Jackhammer',
+    category: 'Fusil à pompe',
+    range: '12/24/48',
+    damage: '1-3d6',
+    rof: 2,
+    shots: 10,
+    minStr: 'd8',
+    weight: 4.5,
+    cost: 2200,
+    notes: '+2 au Tir à courte portée, dispersion redoutable.'
+  },
+  {
+    id: 'fusil_a_pompe_double_canon',
+    name: 'Fusil à Pompe Scié Double Canon',
+    category: 'Fusil à pompe',
+    range: '8/16/32',
+    damage: '1-3d6',
+    rof: 2,
+    shots: 2,
+    minStr: 'd6',
+    weight: 2.5,
+    cost: 350,
+    notes: 'Double décharge simultanée possible, arme brutale de gang.'
+  },
+
+  // ==========================================
+  // --- FUSILS D’ASSAUT & SNIPER (TABLE 3.19) ---
+  // ==========================================
+  {
+    id: 'aga12_maw_assaut',
+    name: 'AGA-12 MAW (Configuration Assaut)',
+    category: 'Fusil',
+    range: '24/48/96',
+    damage: '2d8+1',
+    rof: 4,
+    shots: 50,
+    minStr: 'd6',
+    weight: 2,
+    cost: 16500,
+    ap: 3,
+    notes: 'PA 3, Tir auto et rafales, « l’arme de l’année 2090 », polyvalence suprême.'
+  },
+  {
+    id: 'aga12_maw_appui',
+    name: 'AGA-12 MAW (Appui Lourd)',
+    category: 'Fusil',
+    range: '30/60/120',
+    damage: '2d8+1',
+    rof: 4,
+    shots: 120,
+    minStr: 'd6',
+    weight: 2.5,
+    cost: 20500,
+    ap: 3,
+    notes: 'PA 3, Tambour de 120 coups, portée étendue et tir de suppression soutenu.'
+  },
+  {
+    id: 'aga12_maw_specops',
+    name: 'AGA-12 MAW (Opérations Spéciales)',
+    category: 'Fusil',
+    range: '24/48/96',
+    damage: '2d8+1',
+    rof: 3,
+    shots: 36,
+    minStr: 'd6',
+    weight: 1.5,
+    cost: 18500,
+    ap: 3,
+    notes: 'PA 3, Châssis allégé furtif insonorisé pour commandos corporatistes.'
+  },
+  {
+    id: 'asfa_taw_2022',
+    name: 'ASFA TAW 2022 Bullpup (Foley Arms)',
+    category: 'Fusil',
+    range: '25/50/100',
+    damage: '2d8+1',
+    rof: 3,
+    shots: 45,
+    minStr: 'd8',
+    weight: 2.5,
+    cost: 5000,
+    ap: 3,
+    notes: 'PA 3, Tir auto/rafale, comprend un lance-grenades 25mm monté en sous-canon.'
+  },
+  {
+    id: 'bki_bk616',
+    name: 'Black Knight BK-616 Polymère Avancé',
+    category: 'Fusil',
+    range: '24/48/96',
+    damage: '2d8',
+    rof: 4,
+    shots: 60,
+    minStr: 'd6',
+    weight: 1.5,
+    cost: 3200,
+    ap: 3,
+    notes: 'PA 3, Munitions 6mm sans douille perforantes, compensateur de recul intégré.'
+  },
+  {
+    id: 'bki_fusil_amphibie',
+    name: 'Fusil Amphibie à Fléchettes BKI',
+    category: 'Fusil',
+    range: '20/40/80',
+    damage: '2d8',
+    rof: 1,
+    shots: 12,
+    minStr: 'd4',
+    weight: 1.5,
+    cost: 2000,
+    ap: 2,
+    notes: 'PA 2, Fléchettes hydrodynamiques, tir silencieux sous et hors de l’eau (-2 Perception).'
+  },
+  {
+    id: 'sc_fusil_assassin',
+    name: 'Fusil d’Assassin Street Chic Cal. 50',
+    category: 'Fusil',
+    range: '30/60/90',
+    damage: '2d10',
+    rof: 1,
+    shots: 1,
+    minStr: 'd6',
+    weight: 2,
+    cost: 2000,
+    ap: 2,
+    notes: 'PA 2, Tir statique, arme polymère à coup unique qui s’autodissout après le tir.'
+  },
+  {
+    id: 'wt_tarentula_sniper',
+    name: 'Fusil de Chasse Sniper WT Tarentula',
+    category: 'Fusil',
+    range: '30/60/120',
+    damage: '2d8+2',
+    rof: 1,
+    shots: 8,
+    minStr: 'd6',
+    weight: 6,
+    cost: 6000,
+    ap: 2,
+    notes: 'PA 2, Tir statique, livré avec lunette de visée multi-optique 160x.'
+  },
+  {
+    id: 'wt_flechettes_pneumatique',
+    name: 'Fusil Pneumatique à Fléchettes Toxiques WT',
+    category: 'Fusil',
+    range: '10/20/30',
+    damage: '2d4',
+    rof: 1,
+    shots: 12,
+    minStr: 'd4',
+    weight: 4,
+    cost: 1200,
+    notes: 'Tir silencieux de toxines (poison mortel, venin, paralysie ou tranquillisant).'
+  },
+  {
+    id: 'up_fusil_punk3d',
+    name: 'Fusil Punk Urban Punk Punk3D',
+    category: 'Fusil',
+    range: '20/40/80',
+    damage: '2d8',
+    rof: 1,
+    shots: 9,
+    minStr: 'd4',
+    weight: 4,
+    cost: 6000,
+    ap: 2,
+    notes: 'PA 2, Imprimé 3D avec 1200 skins HoloTag personnalisables.'
+  },
   {
     id: 'fusil_assaut_fn_scar_cyber',
     name: 'Fusil d’Assaut FN SCAR-2090',
@@ -925,7 +1620,7 @@ export const WEAPONS_CATALOG: WeaponItem[] = [
     weight: 4,
     cost: 2600,
     ap: 2,
-    notes: 'PA 2, Sélecteur de tir (Coup par coup / Rafale 3 / Auto)'
+    notes: 'PA 2, Sélecteur de tir modulaire, rail d’accessoires picatinny.'
   },
   {
     id: 'fusil_sniper_barret_cyber',
@@ -939,26 +1634,419 @@ export const WEAPONS_CATALOG: WeaponItem[] = [
     weight: 8,
     cost: 4500,
     ap: 4,
-    notes: 'PA 4, Lunette thermique zoom x10, Bipied déployable'
+    notes: 'PA 4, Lunette thermique zoom x10, Bipied déployable.'
   },
 
-  // Pompes & Lourds
+  // ==========================================
+  // --- ARMES LOURDES (TABLE 3.20) ---
+  // ==========================================
   {
-    id: 'fusil_pompe_combat_auto',
-    name: 'Fusil de Pompe Automatique Pancor Jackhammer',
-    category: 'Fusil à pompe',
-    range: '12/24/48',
-    damage: '1-3d6',
-    rof: 2,
-    shots: 10,
+    id: 'aga_rg30_enforcer',
+    name: 'Canon Électrique AGA-RG30 Enforcer',
+    category: 'Lourd',
+    range: '50/100/200',
+    damage: '3d6',
+    rof: 1,
+    shots: 5,
     minStr: 'd8',
-    weight: 4.5,
-    cost: 2200,
-    notes: '+2 au Tir à courte portée, dispersion'
+    weight: 9,
+    cost: 150000,
+    ap: 4,
+    notes: 'PA 4, Rails magnétiques hélicoïdaux (670 m/s), Arme Lourde, Lunette 400x.'
   },
   {
+    id: 'aga_annihilator',
+    name: 'Canon Électrique Personnel AGA Annihilator',
+    category: 'Lourd',
+    range: '50/100/200',
+    damage: '2d10',
+    rof: 1,
+    shots: 20,
+    minStr: 'd8',
+    weight: 30,
+    cost: 175000,
+    notes: 'Calibre 25mm monté sur sellette d’épaule, ordinateur de visée intégré.'
+  },
+  {
+    id: 'aga_mjolnir_fam',
+    name: 'Fusil Antimatériel AGA Mjolnir 30mm',
+    category: 'Lourd',
+    range: '50/100/200',
+    damage: '3d8',
+    rof: 3,
+    shots: 100,
+    minStr: 'd10',
+    weight: 43,
+    cost: 450000,
+    ap: 6,
+    notes: 'PA 6, Calibre 30mm antimatériel lourd, tir statique sur trépied obligatoire.'
+  },
+  {
+    id: 'aga_thumper_lance_grenades',
+    name: 'Lance-Grenades Rotatif 25mm AGA Thumper',
+    category: 'Lourd',
+    range: '24/48/96',
+    damage: '3d6',
+    rof: 3,
+    shots: 20,
+    minStr: 'd12',
+    weight: 30,
+    cost: 1500,
+    notes: 'Gabarit Moyen d’explosion, saturation rapide de zone.'
+  },
+  {
+    id: 'aga_vindicator_gauss',
+    name: 'Canon Électrique Épaule AGA Vindicator',
+    category: 'Lourd',
+    range: '50/100/200',
+    damage: '3d8',
+    rof: 1,
+    shots: 20,
+    minStr: 'd8',
+    weight: 30,
+    cost: 200000,
+    notes: 'Canon de Gauss supersonique monté sur sellette, alimentation dorsale.'
+  },
+  {
+    id: 'bki_liberator_minigun',
+    name: 'Minigun Gatling 6 Canons BK Liberator',
+    category: 'Lourd',
+    range: '24/48/96',
+    damage: '2d8',
+    rof: 6,
+    shots: 1000,
+    minStr: 'd8',
+    weight: 43,
+    cost: 12000,
+    ap: 3,
+    notes: 'PA 3, CdT 6, 1000 cartouches, exige trépied ou cardan assisté.'
+  },
+  {
+    id: 'bki_maverick_canon',
+    name: 'Canon Automatique Léger BK Maverick (15mm)',
+    category: 'Lourd',
+    range: '50/100/200',
+    damage: '2d10',
+    rof: 3,
+    shots: 200,
+    minStr: 'd8',
+    weight: 33,
+    cost: 60000,
+    ap: 4,
+    notes: 'PA 4, Cartouches antipersonnel lourdes 15mm, trépied requis.'
+  },
+  {
+    id: 'mitrailleuse_bessy_50',
+    name: 'Mitrailleuse Lourde Calibre .50 Bessy',
+    category: 'Lourd',
+    range: '50/100/200',
+    damage: '2d10',
+    rof: 3,
+    shots: 200,
+    minStr: 'd8',
+    weight: 33,
+    cost: 1000,
+    ap: 4,
+    notes: 'PA 4, Bande de 200 cartouches perforantes, montage véhicule ou trépied.'
+  },
+  {
+    id: 'wt_mg762',
+    name: 'Mitrailleuse d’Appui WT MG-762 (7.62mm)',
+    category: 'Lourd',
+    range: '30/60/120',
+    damage: '2d8+1',
+    rof: 4,
+    shots: 200,
+    minStr: 'd8',
+    weight: 10,
+    cost: 700,
+    ap: 2,
+    notes: 'PA 2, Munitions standard abondantes dans le Sprawl.'
+  },
+
+  // ==========================================
+  // --- ARMES À ÉNERGIE (TABLE 3.23) ---
+  // ==========================================
+  {
+    id: 'aga_carabine_laser_bc1',
+    name: 'Carabine Laser AGA BC1',
+    category: 'Énergie',
+    range: '24/48/96',
+    damage: '3d8',
+    rof: 1,
+    shots: 20,
+    minStr: 'd6',
+    weight: 2.5,
+    cost: 10000,
+    ap: 4,
+    notes: 'PA 4, Faisceau laser continu à haute densité, alimenté par batterie.'
+  },
+  {
+    id: 'aga_fusil_laser_plr',
+    name: 'Fusil à Laser Pulsé AGA PLR',
+    category: 'Énergie',
+    range: '30/60/120',
+    damage: '1-3d6',
+    rof: 3,
+    shots: 48,
+    minStr: 'd6',
+    weight: 2,
+    cost: 900,
+    ap: 2,
+    notes: 'PA 2, Tir automatique et rafales sans recul, carcasse en polymère noir.'
+  },
+  {
+    id: 'aga_fusil_sniper_bsr1',
+    name: 'Fusil Laser de Précision AGA BSR1',
+    category: 'Énergie',
+    range: '40/80/160',
+    damage: '3d6',
+    rof: 1,
+    shots: 8,
+    minStr: 'd6',
+    weight: 2,
+    cost: 15000,
+    ap: 6,
+    notes: 'PA 6, Faisceau laser hyper-concentré antiblindage, portée extrême.'
+  },
+  {
+    id: 'aga_fusil_maser_fm1',
+    name: 'Fusil Micro-Ondes MASER AGA FM1',
+    category: 'Énergie',
+    range: '24/48/96',
+    damage: '2d8+2',
+    rof: 1,
+    shots: 10,
+    minStr: 'd6',
+    weight: 4,
+    cost: 10000,
+    notes: 'Faisceau micro-ondes à guide d’ondes carré : ignore les armures non lourdes.'
+  },
+  {
+    id: 'aga_fusil_particules_x4',
+    name: 'Fusil à Particules AGA X-4',
+    category: 'Énergie',
+    range: '24/48/96',
+    damage: '3d8',
+    rof: 1,
+    shots: 12,
+    minStr: 'd6',
+    weight: 6,
+    cost: 2000,
+    ap: 2,
+    notes: 'Électrons relativistes (1 gigajoule), ignore les armures non lourdes.'
+  },
+  {
+    id: 'aga_canon_particules_xpbc',
+    name: 'Canon Lourd à Particules AGA-XPBC-1.01',
+    category: 'Énergie',
+    range: '24/48/96',
+    damage: '3d10',
+    rof: 1,
+    shots: 24,
+    minStr: 'd8',
+    weight: 15,
+    cost: 4000,
+    ap: 4,
+    notes: 'PA 4, Double canon lourd à ions, ignore armures non lourdes, cellule hydrogène.'
+  },
+  {
+    id: 'aga_mitrailleuse_laser_pmg1',
+    name: 'Mitrailleuse à Laser Pulsé AGA PMG-1',
+    category: 'Énergie',
+    range: '50/100/200',
+    damage: '1-3d6',
+    rof: 5,
+    shots: 200,
+    minStr: 'd6',
+    weight: 4,
+    cost: 1500,
+    ap: 2,
+    notes: 'PA 2, Tir automatique 5 tirs/round sans aucun recul, batterie lourde.'
+  },
+  {
+    id: 'aga_pistolet_laser_pl1',
+    name: 'Pistolet à Laser Pulsé AGA PL-1',
+    category: 'Énergie',
+    range: '15/30/60',
+    damage: '1-3d6',
+    rof: 1,
+    shots: 48,
+    minStr: 'd4',
+    weight: 1.2,
+    cost: 1200,
+    notes: 'Pistolet militaire à impulsions laser semi-automatique.'
+  },
+
+  // ==========================================
+  // --- ARMES SPÉCIALES & LANCEURS (TABLE 3.21 & 3.22) ---
+  // ==========================================
+  {
+    id: 'fusil_iem_cyclone',
+    name: 'Fusil à Impulsion Électromagnétique SR Cyclone',
+    category: 'Spécial',
+    range: 'Gabarit de cône',
+    damage: '2d6',
+    rof: 1,
+    shots: 3,
+    minStr: 'd4',
+    weight: 6,
+    cost: 500,
+    notes: 'Neutralise machines et implants (Résistance 8). Dégâts non létaux/2 sur organiques.'
+  },
+  {
+    id: 'fusil_anti_emeute_gel',
+    name: 'Fusil Anti-Émeute à Gel Absorbant RS',
+    category: 'Spécial',
+    range: '12/24/48',
+    damage: '2d6',
+    rof: 1,
+    shots: 6,
+    minStr: 'd4',
+    weight: 8,
+    cost: 100,
+    notes: 'Projectiles de gel haute vélocité non létaux, repousse de 1d4 cases et assomme.'
+  },
+  {
+    id: 'fusil_magnetique_xbow',
+    name: 'Fusil Magnétique Silencieux BK XBow',
+    category: 'Spécial',
+    range: '12/24/48',
+    damage: '3d4',
+    rof: 1,
+    shots: 8,
+    minStr: 'd4',
+    weight: 6,
+    cost: 450,
+    notes: 'Tir de carreaux plats auto-scellants conçu pour les combats sous-vide en station spatiale.'
+  },
+  {
+    id: 'fusil_magnetique_mw_javelin',
+    name: 'Fusil Magnétique MarsWorks Javelin',
+    category: 'Spécial',
+    range: '12/24/48',
+    damage: '3d4',
+    rof: 1,
+    shots: 6,
+    minStr: 'd4',
+    weight: 7,
+    cost: 350,
+    notes: 'Carreaux de métal mou subsoniques, redoutable contre cibles sans armure.'
+  },
+  {
+    id: 'fusil_gyroc_127_sentinel',
+    name: 'Fusil Gyroc Lourd Sentinel Rock 12.7mm',
+    category: 'Spécial',
+    range: '24/48/96',
+    damage: '3d6',
+    rof: 1,
+    shots: 30,
+    minStr: 'd6',
+    weight: 5,
+    cost: 600,
+    notes: 'Fusil de roquettes Gyroc autoguidées avec assistance au verrouillage TAP.'
+  },
+  {
+    id: 'lance_filets_retiarius',
+    name: 'Lance-Filets Sentinel Rock Retiarius',
+    category: 'Spécial',
+    range: '4/8/16',
+    damage: 'Entrave',
+    rof: 1,
+    shots: 1,
+    minStr: 'd4',
+    weight: 2.5,
+    cost: 100,
+    notes: 'Filets de capture haute résistance : test Agilité/Force à -2 pour se libérer.'
+  },
+  {
+    id: 'tourelle_automatique_sr',
+    name: 'Tourelle Automatique Déployable Sentinel Rock',
+    category: 'Spécial',
+    range: '12/24/48',
+    damage: '2d8',
+    rof: 3,
+    shots: 200,
+    minStr: 'd6',
+    weight: 12,
+    cost: 3000,
+    notes: 'Détection optique et thermique 360°, Tir d6 autonome jusqu’à épuisement.'
+  },
+  {
+    id: 'aga_arbalest_missile',
+    name: 'Lance-Missiles Antichar 120mm AGA Arbalest',
+    category: 'Spécial',
+    range: '50/100/200',
+    damage: '5d8',
+    rof: 1,
+    shots: 1,
+    minStr: 'd6',
+    weight: 20,
+    cost: 500000,
+    ap: 30,
+    notes: 'PA 30, Tir statique, missile lourd guidé antichar de 120mm, Gabarit Moyen.'
+  },
+  {
+    id: 'aga_pyro_hydra4',
+    name: 'Tube Lance-Missiles Antiaérien 50mm AGA Pyro-Hydra4',
+    category: 'Spécial',
+    range: '100/200/400',
+    damage: '5d10',
+    rof: 1,
+    shots: 4,
+    minStr: 'd6',
+    weight: 15,
+    cost: 400000,
+    ap: 24,
+    notes: 'PA 24, Missiles guidés antiaériens à verrouillage optique et radar.'
+  },
+  {
+    id: 'lance_roquettes_rpg17',
+    name: 'Lance-Roquettes Antichar RPG-17',
+    category: 'Spécial',
+    range: '30/60/120',
+    damage: '4d6',
+    rof: 1,
+    shots: 1,
+    minStr: 'd6',
+    weight: 0.5,
+    cost: 1000,
+    ap: 6,
+    notes: 'PA 6, Roquette militaire à charge creuse, Gabarit Moyen.'
+  },
+  {
+    id: 'lance_flammes_damnation',
+    name: 'Lance-Flammes Lourd AGA Damnation',
+    category: 'Spécial',
+    range: 'Gabarit de cône ou 18 cases',
+    damage: '2d12',
+    rof: 1,
+    shots: 30,
+    minStr: 'd6',
+    weight: 15,
+    cost: 700,
+    notes: 'Réservoir dorsal sous pression, projection conique ou tir parabolique Gabarit Moyen.'
+  },
+  {
+    id: 'mini_lance_flammes_purge',
+    name: 'Mini Lance-Flammes AGA Purge',
+    category: 'Spécial',
+    range: 'Gabarit de cône',
+    damage: '2d12',
+    rof: 1,
+    shots: 10,
+    minStr: 'd4',
+    weight: 2.5,
+    cost: 500,
+    notes: 'Pistolet compact à napalm sous pression pour nettoyage de pièces closes.'
+  },
+
+  // ==========================================
+  // --- GRENADES & EXPLOSIFS (TABLE 3.10A) ---
+  // ==========================================
+  {
     id: 'grenades_frag_x2',
-    name: 'Lot de Grenades à Fragmentation (x2)',
+    name: 'Grenades à Fragmentation HE (x2)',
     category: 'Grenade',
     range: '5/10/20',
     damage: '3d6',
@@ -968,11 +2056,254 @@ export const WEAPONS_CATALOG: WeaponItem[] = [
     weight: 1,
     cost: 300,
     ap: 2,
-    notes: 'Gabarit Moyen d’explosion, PA 2'
+    notes: 'Gabarit Moyen d’explosion, shrapnels perforants PA 2.'
+  },
+  {
+    id: 'grenade_flashbang_x2',
+    name: 'Grenades Flashbang Stun (x2)',
+    category: 'Grenade',
+    range: '5/10/20',
+    damage: 'Spécial',
+    rof: 1,
+    shots: 2,
+    minStr: 'd4',
+    weight: 0.5,
+    cost: 150,
+    notes: 'Non létal, Gabarit Moyen : test de Vigueur à -2 ou Sonné et Aveuglé.'
+  },
+  {
+    id: 'grenade_iem_x2',
+    name: 'Grenades à Impulsion Électromagnétique IEM (x2)',
+    category: 'Grenade',
+    range: '5/10/20',
+    damage: '2d8 IEM',
+    rof: 1,
+    shots: 2,
+    minStr: 'd4',
+    weight: 0.8,
+    cost: 450,
+    notes: 'Gabarit Moyen, grille les circuits électroniques et implants sans blesser la chair.'
+  },
+  {
+    id: 'grenade_thermique_x2',
+    name: 'Grenades Thermiques au Magnésium (x2)',
+    category: 'Grenade',
+    range: '5/10/20',
+    damage: '3d8',
+    rof: 1,
+    shots: 2,
+    minStr: 'd4',
+    weight: 1,
+    cost: 400,
+    ap: 4,
+    notes: 'Gabarit Moyen, brûle à plus de 2500°C, fait fondre les métaux et serrures.'
   }
 ];
 
 export const ARMOR_CATALOG: ArmorItem[] = [
+  // ==========================================
+  // --- ARMURES PERSONNELLES (TABLE 3.1) ---
+  // ==========================================
+  {
+    id: 'rs_bulwark',
+    name: 'Armure Anti-Émeute RS Bulwark (+6)',
+    category: 'Lourd',
+    armorBonus: 6,
+    coverage: 'Corps complet',
+    weight: 10,
+    cost: 1200,
+    notes: 'Protège tout le corps ; comprend un bouclier anti-émeute composite en dotation.'
+  },
+  {
+    id: 'rs_justified_response',
+    name: 'Armure d’Assaut RS Justified Response (+6)',
+    category: 'Lourd',
+    armorBonus: 6,
+    coverage: 'Corps complet',
+    weight: 7.5,
+    cost: 3700,
+    notes: 'Plaques céramiques et nanopolymères d’assaut, excellente protection sans entrave.'
+  },
+  {
+    id: 'rs_beachhead',
+    name: 'Armure de Premier Renfort RS Beachhead (+4)',
+    category: 'Moyen',
+    armorBonus: 4,
+    coverage: 'Corps complet',
+    weight: 10,
+    cost: 500,
+    notes: 'Équipement robuste des forces de premier renfort tactique.'
+  },
+  {
+    id: 'rs_raptor_specops',
+    name: 'Armure Unités Spéciales RS Raptor (+5)',
+    category: 'Lourd',
+    armorBonus: 5,
+    coverage: 'Corps complet',
+    weight: 10,
+    cost: 4500,
+    notes: 'Spécification militaire haut de gamme, inserts titane et absorption cinétique.'
+  },
+  {
+    id: 'bki_ghost_suit',
+    name: 'Combinaison Furtive BKI Ghost Suit (+2)',
+    category: 'Léger',
+    armorBonus: 2,
+    coverage: 'Corps complet',
+    weight: 7.5,
+    cost: 950,
+    notes: 'Tissu absorbant les ondes radar et infrarouges, camouflage passif.'
+  },
+  {
+    id: 'bki_knight_errant',
+    name: 'Armure Tactique BKI Knight Errant (+4)',
+    category: 'Moyen',
+    armorBonus: 4,
+    coverage: 'Corps complet',
+    weight: 16,
+    cost: 1000,
+    notes: 'Corps complet, plaques d’acier trempé et résines balistiques pour mercenaires.'
+  },
+  {
+    id: 'so_shinobi_stealth',
+    name: 'Combinaison d’Infiltration SO Shinobi (+2)',
+    category: 'Léger',
+    armorBonus: 2,
+    coverage: 'Corps complet',
+    weight: 1,
+    cost: 600,
+    notes: '+2 en Discrétion, +1 en Parade, tissu souple noir mat anti-frottements.'
+  },
+  {
+    id: 'so_shinryu_impact',
+    name: 'Combinaison Anti-Choc SO Shinryu (+3)',
+    category: 'Léger',
+    armorBonus: 3,
+    coverage: 'Corps complet',
+    weight: 2.5,
+    cost: 600,
+    notes: 'Gel polymère non-newtonien dissipant instantanément l’onde de choc des impacts.'
+  },
+  {
+    id: 'up_gecko_suit',
+    name: 'Combinaison d’Escalade UP Gecko (+2)',
+    category: 'Léger',
+    armorBonus: 2,
+    coverage: 'Corps complet',
+    weight: 4,
+    cost: 350,
+    notes: '+2 en Athlétisme (Escalade) grâce aux micro-tampons adhésifs réversibles.'
+  },
+  {
+    id: 'ed_business_suit',
+    name: 'Costume Corporatiste ED Business (+2)',
+    category: 'Civil',
+    armorBonus: 2,
+    coverage: 'Torse, Bras, Jambes',
+    weight: 2,
+    cost: 500,
+    notes: 'Holster dissimulé invisible aux scanners légers, coupe de haute volée.'
+  },
+  {
+    id: 'ed_entourage',
+    name: 'Costume d’Apparat ED Entourage (+3)',
+    category: 'Civil',
+    armorBonus: 3,
+    coverage: 'Torse, Bras, Jambes',
+    weight: 2.5,
+    cost: 800,
+    notes: 'Fibres aramides luxueuses, passe les contrôles VIP sans éveiller le moindre soupçon.'
+  },
+  {
+    id: 'ed_combat_vest',
+    name: 'Gilet de Combat Balistique ED (+2)',
+    category: 'Léger',
+    armorBonus: 2,
+    coverage: 'Torse',
+    weight: 2,
+    cost: 300,
+    notes: 'Plaque pectorale et dorsale amovible en céramique, léger et discret.'
+  },
+  {
+    id: 'pd_urban_trench',
+    name: 'Trench-Coat Détective PD Urban Trench (+2)',
+    category: 'Civil',
+    armorBonus: 2,
+    coverage: 'Torse, Bras, Jambes',
+    weight: 4,
+    cost: 400,
+    notes: 'Doublure pare-balles imperméable, coupe classique du détective du Sprawl.'
+  },
+  {
+    id: 'pd_future_noir',
+    name: 'Tenue Future Noir PD (+3)',
+    category: 'Civil',
+    armorBonus: 3,
+    coverage: 'Torse, Bras, Jambes',
+    weight: 4,
+    cost: 600,
+    notes: 'Col relevé blindé protégeant contre 50% des tirs ciblant la tête.'
+  },
+  {
+    id: 'up_hoodyz',
+    name: 'Sweat à Capuche Renforcé UP Hoodyz (+1)',
+    category: 'Civil',
+    armorBonus: 1,
+    coverage: 'Torse',
+    weight: 3,
+    cost: 100,
+    notes: 'Capuche pare-éclats protégeant contre 75% des tirs dirigés à la tête.'
+  },
+  {
+    id: 'rw_motard_renforce',
+    name: 'Veste de Motard Renforcée RW (+3)',
+    category: 'Civil',
+    armorBonus: 3,
+    coverage: 'Torse, Bras',
+    weight: 4,
+    cost: 100,
+    notes: 'Cuir renforcé titane, réduit de 1 cran le dé de dégâts lors d’une collision.'
+  },
+  {
+    id: 'up_street_soldier',
+    name: 'Tenue de Combat Urbain UP Street Soldier (+1)',
+    category: 'Civil',
+    armorBonus: 1,
+    coverage: 'Torse, Bras, Jambes',
+    weight: 4,
+    cost: 200,
+    notes: 'Treillis camouflage urbain résistant aux coupures et éraflures.'
+  },
+  {
+    id: 'ed_underarmour',
+    name: 'Sous-Vêtement Balistique ED UnderArmour (+1)',
+    category: 'Civil',
+    armorBonus: 1,
+    coverage: 'Torse, Bras, Jambes',
+    weight: 0.5,
+    cost: 150,
+    notes: 'Tissu nanométrique ultra-fin se cumulant avec n’importe quelle armure portée.'
+  },
+  {
+    id: 'up_balaklava',
+    name: 'Cagoule Balistique UP Balaklava (+1)',
+    category: 'Casque',
+    armorBonus: 1,
+    coverage: 'Tête',
+    weight: 0.2,
+    cost: 50,
+    notes: 'Protège la tête et le visage, se cumule avec un casque ou un masque.'
+  },
+  {
+    id: 'wingsuit_peregrine',
+    name: 'Wingsuit Tactique Peregrine (+1)',
+    category: 'Léger',
+    armorBonus: 1,
+    coverage: 'Corps complet',
+    weight: 2.5,
+    cost: 400,
+    notes: 'Permet le vol plané infiltrant (taux de plané de 8 pour 1).'
+  },
   {
     id: 'veste_civile_kevlar',
     name: 'Veste Civile Tissée Kevlar',
@@ -1024,27 +2355,157 @@ export const ARMOR_CATALOG: ArmorItem[] = [
     notes: 'Exige FOR d8. -1 à l’Agilité sans renforcement myomère.'
   },
   {
-    id: 'costume_trois_pieces_tisse_aramide',
-    name: 'Costume 3 Pièces Haute-Couture Aramide',
+    id: 'gilet_pare_balles_police_lourd',
+    name: 'Gilet Pare-Balles Police Lourde (+4)',
+    category: 'Moyen',
+    armorBonus: 4,
+    coverage: 'Torse',
+    weight: 5,
+    cost: 1500,
+    notes: 'Plaques balistiques de niveau IV avec collerette de protection de la gorge.'
+  },
+  {
+    id: 'cuirasse_cloutee_metal',
+    name: 'Cuirasse Cloutée de Gang (+3)',
+    category: 'Moyen',
+    armorBonus: 3,
+    coverage: 'Torse, Épaules',
+    weight: 7,
+    cost: 450,
+    notes: 'Tôles d’acier et chaînes forgées, style intimidant des bas-fonds.'
+  },
+  {
+    id: 'robe_de_soiree_kevlar_luminescente',
+    name: 'Robe / Tenue de Soirée Holo-Aramide (+2)',
     category: 'Civil',
     armorBonus: 2,
     coverage: 'Torse, Jambes',
     weight: 1.5,
-    cost: 3500,
-    notes: '+1 aux jets de Persuasion en milieu corporatiste huppé.'
+    cost: 4000,
+    notes: 'Fils électroluminescents et fibres de kevlar souple pour cocktails VIP.'
+  },
+
+  // ==========================================
+  // --- EXOARMURES & EXOSQUELETTES (TABLE 3.1) ---
+  // ==========================================
+  {
+    id: 'exo_bki_achilles',
+    name: 'Exoarmure BKI Achilles (+4)',
+    category: 'Exoarmure',
+    armorBonus: 4,
+    coverage: 'Corps complet',
+    weight: 18,
+    cost: 12000,
+    notes: 'Exoarmure motorisée : Allure +2, Force +1 cran, Agilité +1 cran.'
+  },
+  {
+    id: 'exo_bki_herakles',
+    name: 'Exoarmure Lourde BKI Herakles (+6)',
+    category: 'Exoarmure',
+    armorBonus: 6,
+    coverage: 'Corps complet',
+    weight: 30,
+    cost: 8000,
+    notes: 'Blindage titanisé lourd : Force +2 crans, résistance colossale aux chocs.'
+  },
+  {
+    id: 'exo_bki_mercury',
+    name: 'Exoarmure Véloce BKI Mercury (+4)',
+    category: 'Exoarmure',
+    armorBonus: 4,
+    coverage: 'Corps complet',
+    weight: 15,
+    cost: 8000,
+    notes: 'Servomoteurs de vitesse : Allure +4, Dé de course et Agilité +1 cran.'
+  },
+  {
+    id: 'exo_bki_venus',
+    name: 'Exoarmure Équilibrée BKI Venus (+4)',
+    category: 'Exoarmure',
+    armorBonus: 4,
+    coverage: 'Corps complet',
+    weight: 12,
+    cost: 10000,
+    notes: 'Profil ultra-compact : Force +1 cran, Agilité +1 cran.'
+  },
+  {
+    id: 'exo_servo_assiste',
+    name: 'Exosquelette Motorisé Industriel',
+    category: 'Exoarmure',
+    armorBonus: 2,
+    coverage: 'Membres et Torse',
+    weight: 15,
+    cost: 5000,
+    notes: 'Force +2 crans, Capacité de charge maximale multipliée par 4, Allure -1.'
   }
 ];
 
 export const GEAR_CATALOG: GearItem[] = [
-  { id: 'cyberdeck_deckmaster_x', name: 'Cyberdeck DeckMaster Quantum-X', category: 'Électronique', weight: 2, cost: 5000, notes: '+2 en Hacking cybernétique en immersion.' },
-  { id: 'dactylo_passe_partout', name: 'Séquenceur de Passe Électronique (Maglock)', category: 'Électronique', weight: 0.5, cost: 1200, notes: 'Permet de court-circuiter les portes à badge.' },
+  // ==========================================
+  // --- ÉLECTRONIQUE, CYBERDECKS & TAP (TABLE 3.14 & 3.15) ---
+  // ==========================================
+  { id: 'cyberdeck_deckmaster_x', name: 'Cyberdeck DeckMaster Quantum-X', category: 'Électronique', weight: 2, cost: 5000, notes: '+2 en Hacking cybernétique en immersion réseau.' },
+  { id: 'dactylo_passe_partout', name: 'Séquenceur de Passe Maglock (Séquenceur)', category: 'Électronique', weight: 0.5, cost: 1200, notes: 'Permet de court-circuiter les portes électroniques et sas à badge.' },
+  { id: 'lunettes_hud_tactique', name: 'Lunettes HUD Réalité Augmentée', category: 'Électronique', weight: 0.2, cost: 900, notes: 'Affiche la trajectoire balistique et le statut biométrique de l’équipe.' },
+  { id: 'brouilleur_ondes_portatif', name: 'Brouilleur Réseau Portatif GhostNet', category: 'Électronique', weight: 1, cost: 950, notes: 'Neutralise les communications sans fil, wifi et flux TAP dans un rayon de 10m.' },
+  { id: 'disque_dur_quantique_chiffre', name: 'Disque de Données Quantique Blindé', category: 'Électronique', weight: 0.2, cost: 400, notes: 'Stockage de pétaoctets de données, auto-effacement en cas de forçage.' },
+  { id: 'scanner_biometrique_portatif', name: 'Scanner d’Empreintes & Rétinien Portatif', category: 'Électronique', weight: 0.5, cost: 800, notes: 'Analyse et reproduit les données biométriques pour ouvrir les sas corpo.' },
+
+  // ==========================================
+  // --- APPLICATIONS DE TAP (TABLE 3.14) ---
+  // ==========================================
+  { id: 'app_tap_cryptomesh', name: 'Application TAP : CryptoMesh VPN v5', category: 'TAP', weight: 0, cost: 300, notes: 'Masque l’adresse physique de votre TAP et confère +1 en Firewall.' },
+  { id: 'app_tap_combat_hud', name: 'Application TAP : Vision Balistique Tactique', category: 'TAP', weight: 0, cost: 600, notes: 'Assistance au calcul de tir (+1 Tir sur cibles immobiles).' },
+  { id: 'app_tap_deep_scanner', name: 'Application TAP : Scanner de Spectres Réseau', category: 'TAP', weight: 0, cost: 500, notes: '+1 pour détecter les virus, malwares et caméras cachées.' },
+  { id: 'app_tap_face_recognizer', name: 'Application TAP : Reconnaissance Faciale 2090', category: 'TAP', weight: 0, cost: 250, notes: 'Scanne instantanément les passants et croise les bases de données d’avis de recherche.' },
+
+  // ==========================================
+  // --- ACCESSOIRES D’ARMES & MUNITIONS ---
+  // ==========================================
+  { id: 'batterie_standard_x3', name: 'Lot de Batteries Électriques Rechange (x3)', category: 'Munitions', weight: 0.5, cost: 30, notes: 'Alimente armes énergétiques et tronçonneuses pendant 48 heures.' },
+  { id: 'cellule_energie_standard', name: 'Cellule d’Énergie pour Arme Laser (x2)', category: 'Munitions', weight: 0.5, cost: 50, notes: 'Une semaine d’autonomie pour carabines et fusils lasers.' },
+  { id: 'cellule_hydrogene_dorsale', name: 'Cellule à Hydrogène Dorsale', category: 'Munitions', weight: 10, cost: 15000, notes: 'Alimentation continue pour canons à particules lourds et exogriffes.' },
+  { id: 'munition_ap_x50', name: 'Boîte de Munitions Perforantes AP (x50)', category: 'Munitions', weight: 1, cost: 350, notes: 'Confère PA 2 aux tirs avec arme balistique standard.' },
+  { id: 'munition_creuse_x50', name: 'Boîte de Balles à Pointe Creuse (x50)', category: 'Munitions', weight: 1, cost: 300, notes: 'Dégâts +2 sur cibles sans armure, mais inefficace contre gilets pare-balles.' },
+  { id: 'silencieux_universel', name: 'Silencieux Acoustique Universel', category: 'Outil', weight: 0.5, cost: 300, notes: 'Élimine le flash et impose un malus de -4 en Perception pour repérer le tir.' },
+  { id: 'viseur_smartlink_holographique', name: 'Module Viseur Smartlink Holographique', category: 'Outil', weight: 0.3, cost: 800, notes: '+1 aux jets de Tir si connecté à un implant Smartlink ou un TAP.' },
+  { id: 'lunette_vision_thermique', name: 'Lunette de Tir Thermique & Infrarouge', category: 'Outil', weight: 1, cost: 1200, notes: 'Ignore totalement l’obscurité, les fumigènes et le brouillard dense.' },
+
+  // ==========================================
+  // --- ÉQUIPEMENT MÉDICAL & SOINS (TABLE 3.13) ---
+  // ==========================================
   { id: 'medkit_militaire', name: 'Trousse Trauma Medkit Militaire', category: 'Médical', weight: 2, cost: 800, notes: '+2 aux tests de Soins, comprend hémostatiques d’urgence.' },
-  { id: 'stimpack_x2', name: 'Lot de Stimpacks de Combats (x2)', category: 'Médical', weight: 0.5, cost: 400, notes: 'Annule instantanément 1 niveau de fatigue ou secousse.' },
-  { id: 'munition_ap_x50', name: 'Boîte de Munitions Perforantes AP (x50)', category: 'Munitions', weight: 1, cost: 350, notes: 'Confère PA 2 aux tirs avec arme balistique.' },
-  { id: 'lunettes_hud_tactique', name: 'Lunettes HUD Réalité Augmentée', category: 'Électronique', weight: 0.2, cost: 900, notes: 'Affiche la trajectoire des tirs et le statut de l’équipe.' },
-  { id: 'boite_outils_nanotech', name: 'Mallette d’Outils Nanotechnologiques', category: 'Outil', weight: 3, cost: 1500, notes: 'Outils auto-ajustables pour toute réparation électronique.' },
-  { id: 'menottes_titanium_x3', name: 'Menottes en Titane Trempé (x3)', category: 'Survie', weight: 1, cost: 300, notes: 'Résistance de rupture FOR d12+4.' },
-  { id: 'fusil_grappin', name: 'Pistolet Lance-Grappin Magnétique', category: 'Survie', weight: 1.5, cost: 650, notes: 'Câble de 30m en fil monofilament pouvant porter 300 kg.' }
+  { id: 'trauma_pack_pro', name: 'Kit Médical Chirurgical Trauma Team', category: 'Médical', weight: 2.5, cost: 1200, notes: '+2 aux tests de Soins, stabilisateur vital et perfusion saline.' },
+  { id: 'stimpack_x2', name: 'Lot de Stimpacks de Combat (x2)', category: 'Médical', weight: 0.5, cost: 400, notes: 'Annule instantanément 1 niveau de fatigue ou secousse.' },
+  { id: 'patch_hemostop_x4', name: 'Slap-Patchs Hémostatiques Hemostop (x4)', category: 'Médical', weight: 0.2, cost: 200, notes: 'Stoppe instantanément l’hémorragie d’une blessure en action gratuite.' },
+  { id: 'patch_antitoxine_x3', name: 'Slap-Patchs Antitoxine Universels (x3)', category: 'Médical', weight: 0.2, cost: 180, notes: '+4 aux jets de Vigueur contre poisons, toxines et drogues.' },
+  { id: 'biometre_pouls_vital', name: 'Biocoin Moniteur Vital Épidermique', category: 'Médical', weight: 0.1, cost: 150, notes: 'Colle sur la tempe, transmet au groupe l’état de santé en temps réel.' },
+
+  // ==========================================
+  // --- DROGUES DE RUE & COMBAT (TABLE 3.7) ---
+  // ==========================================
+  { id: 'drogue_slam', name: 'Dose de Slam (Stimulant de Combat)', category: 'Drogue', weight: 0.1, cost: 50, notes: 'Force et Vigueur augmentées d’un cran pendant 10 rounds, descente brutale.' },
+  { id: 'drogue_hyper_neuro', name: 'Dose d’Hyper-Neuro Réflexes', category: 'Drogue', weight: 0.1, cost: 75, notes: 'Pioche 2 cartes supplémentaires à l’initiative pendant 5 rounds.' },
+  { id: 'drogue_zen', name: 'Inhalateur Zen Anti-Panique', category: 'Drogue', weight: 0.1, cost: 30, notes: 'Immunité totale à la Terreur et aux provocations mentales pendant 1 heure.' },
+  { id: 'drogue_blue_lotus', name: 'Dose de Blue Lotus (Nootropique)', category: 'Drogue', weight: 0.1, cost: 120, notes: '+2 aux jets d’Intellect et de Hacking pendant 1 heure, risque d’accoutumance.' },
+  { id: 'drogue_adrenaline_rush', name: 'Injecteur Auto-Adrénaline Mil-Spec', category: 'Drogue', weight: 0.2, cost: 200, notes: 'Ignore 2 niveaux de malus de blessure pendant 5 rounds en situation critique.' },
+  { id: 'drogue_rage', name: 'Inhalateur de Berserk Rage', category: 'Drogue', weight: 0.1, cost: 60, notes: 'Ignore toute douleur, +2 aux dégâts de corps-à-corps, parade -2 pendant 3 rounds.' },
+
+  // ==========================================
+  // --- EXPLOSIFS & MINES (TABLE 3.9 & 3.10B) ---
+  // ==========================================
+  { id: 'pain_c90_explosif', name: 'Pain d’Explosif Plastique C-90 (1 kg)', category: 'Explosif', weight: 1, cost: 500, notes: 'Dégâts 4d8, détonateur programmable ou déclenchement à distance par signal TAP.' },
+  { id: 'mine_claymore_directionnelle', name: 'Mine Directionnelle Antipersonnel Claymore', category: 'Explosif', weight: 2, cost: 400, notes: 'Dégâts 4d6 dans un cône de 15m, déclenchement par fil-piège ou capteur infrarouge.' },
+  { id: 'detonateur_radio_multi', name: 'Détonateur Radio Multi-Fréquences', category: 'Explosif', weight: 0.2, cost: 150, notes: 'Permet de faire sauter jusqu’à 5 charges d’explosifs synchronisées.' },
+
+  // ==========================================
+  // --- OUTILS & SURVIE ---
+  // ==========================================
+  { id: 'boite_outils_nanotech', name: 'Mallette d’Outils Nanotechnologiques', category: 'Outil', weight: 3, cost: 1500, notes: 'Outils auto-ajustables conférant +1 en Réparation mécanique et électronique.' },
+  { id: 'cable_monofilament_30m', name: 'Bobine de Câble Monofilament (30m)', category: 'Survie', weight: 0.5, cost: 250, notes: 'Câble ultra-résistant pouvant supporter 500 kg, coupe comme un rasoir.' },
+  { id: 'fusil_grappin', name: 'Pistolet Lance-Grappin Magnétique', category: 'Survie', weight: 1.5, cost: 650, notes: 'Portée de 30m, treuil électrique motorisé pouvant hisser 250 kg.' },
+  { id: 'menottes_titanium_x3', name: 'Menottes en Titane Trempé (x3)', category: 'Survie', weight: 1, cost: 300, notes: 'Résistance de rupture FOR d12+4, verrouillage électronique encrypté.' },
+  { id: 'masque_respiratoire_filtrant', name: 'Masque à Gaz Respiratoire Actif', category: 'Survie', weight: 0.8, cost: 200, notes: 'Immunise contre le gaz lacrymogène, les fumées toxiques et l’air pollué du Sprawl.' }
 ];
 
 export const DRONES_CATALOG: DroneItem[] = [
@@ -1087,32 +2548,226 @@ export const DRONES_CATALOG: DroneItem[] = [
 ];
 
 export const EDGES_CATALOG: EdgeDefinition[] = [
-  { id: 'combattant_reflexe', name: 'Combattant Réflexe', category: 'Combat', requirements: 'Novice, Agilité d8', description: 'Tire des cartes supplémentaires pour l’initiative et garde la meilleure.' },
-  { id: 'guerrier_augmente', name: 'Guerrier Augmenté', category: 'Cyber', requirements: 'Novice, Au moins 2 implants cybernétiques', description: '+1 en Parade et +1 en Résistance lorsque les implants fonctionnent.', isCyber: true },
-  { id: 'blocage', name: 'Blocage', category: 'Combat', requirements: 'Novice, Combat d8', description: '+1 à la valeur de Parade face aux attaques de mêlée.' },
-  { id: 'as_clavier', name: 'As du Clavier', category: 'Professionnel', requirements: 'Novice, Hacking d8, Intellect d8', description: '+2 à tous les jets de Hacking et réduit de moitié le temps nécessaire aux intrusions.' },
-  { id: 'maitre_tap', name: 'Maître du TAP', category: 'Cyber', requirements: 'Novice, Intellect d8', description: 'Augmente de +2 le Firewall de votre TAP et permet d’exécuter 2 programmes simultanés.', isCyber: true },
-  { id: 'interference', name: 'Interférence', category: 'Cyber', requirements: 'Novice, Hacking d6', description: 'Inflige un malus de -2 aux hackers ennemis tentant d’infiltrer votre réseau personnel.' },
-  { id: 'sang_froid', name: 'Sang-Froid', category: 'Combat', requirements: 'Novice, Tir d8', description: 'Ignore 2 points de malus liés au recul, à la visée précipitée ou au tir en mouvement.' },
-  { id: 'tir_precision', name: 'Tir de Précision', category: 'Combat', requirements: 'Novice, Tir d8', description: 'Lors d’une visée, ajoute +2 aux dégâts ou réduit l’armure de la cible de 2.' },
-  { id: 'pilote_ne', name: 'Pilote Né', category: 'Professionnel', requirements: 'Novice, Agilité d8, Pilotage d8', description: '+2 à tous les jets de Pilotage et ignore les pénalités de terrain difficile.' },
-  { id: 'lien_machine', name: 'Lien Machine', category: 'Cyber', requirements: 'Novice, Interface Rigger', description: 'Contrôle les drones et véhicules avec la pensée sans temps de latence (+2 aux jets de manœuvre).', isCyber: true },
-  { id: 'dur_a_cuire', name: 'Dur à Cuire', category: 'Combat', requirements: 'Novice, Vigueur d8', description: 'Se remet plus facilement des blessures et bénéficie d’un jet de survie à +2 si Inconscient.' },
-  { id: 'charismatique', name: 'Charismatique', category: 'Social', requirements: 'Novice, Âme d8', description: 'Bénéficie d’une relance gratuite sur les tests de Persuasion et Séduction.' },
-  { id: 'tolerance_cybernetique', name: 'Tolérance Cybernétique', category: 'Cyber', requirements: 'Novice, Vigueur d8', description: 'Augmente votre seuil maximal de Cybertension de +2 points.', isCyber: true },
-  { id: 'bricoleur_genie', name: 'Bricoleur de Génie', category: 'Professionnel', requirements: 'Novice, Réparation d8', description: 'Réduit de moitié le coût et le temps des réparations mécaniques et cybernétiques.' },
-  { id: 'arts_martiaux_sup', name: 'Arts Martiaux Supérieurs', category: 'Combat', requirements: 'Novice, Combat d8', description: 'Mains nues considérées comme armes létales FOR+d6, ignore 1 point d’armure adverse.' }
+  // --- ATOUTS D'ARRIÈRE-PLAN (BACKGROUND) ---
+  { id: 'ambidextre', name: 'Ambidextre', category: 'Arrière-plan', requirements: 'Novice, Agilité d8', description: 'Ignore le malus de -2 lié à l’utilisation de la main non directrice.' },
+  { id: 'arcanes', name: 'Arcanes', category: 'Arrière-plan', requirements: 'Novice', description: 'Donne accès à un domaine d’arcanes (Magie, Miracles, Psioniques, Science étrange, Don).' },
+  { id: 'aristocrate', name: 'Aristocrate', category: 'Arrière-plan', requirements: 'Novice', description: '+2 en Culture générale et Persuasion (réseautage) au sein des classes dirigeantes ou hautes sphères.' },
+  { id: 'brave', name: 'Brave', category: 'Arrière-plan', requirements: 'Novice, Âme d6', description: '+2 aux jets contre la Terreur et réduit de -2 les résultats sur la table de Terreur.' },
+  { id: 'brute', name: 'Brute', category: 'Arrière-plan', requirements: 'Novice, Force d6, Vigueur d6', description: 'Athlétisme lié à la Force, peut résister à Athlétisme avec Force, Portée de lancer accrue (+1/+2/+4).' },
+  { id: 'chanceux', name: 'Chanceux', category: 'Arrière-plan', requirements: 'Novice', description: '+1 Jeton supplémentaire par session de jeu.' },
+  { id: 'tres_chanceux', name: 'Très chanceux', category: 'Arrière-plan', requirements: 'Novice, Chanceux', description: '+2 Jetons supplémentaires par session de jeu (au total avec Chanceux).' },
+  { id: 'charismatique', name: 'Charismatique', category: 'Arrière-plan', requirements: 'Novice, Âme d8', description: 'Bénéficie d’une Relance gratuite à tous les tests de Persuasion.' },
+  { id: 'costaud', name: 'Costaud', category: 'Arrière-plan', requirements: 'Novice, Force d6, Vigueur d6', description: 'Taille +1 (max. 3) et donc Résistance +1. Force augmentée d’un cran pour l’encombrement et le port d’armes.' },
+  { id: 'enrage', name: 'Enragé', category: 'Arrière-plan', requirements: 'Novice', description: 'Si Secoué ou Blessé, peut entrer en rage : Force +1 cran, Résistance +2, ignore 1 pt de blessure, attaque totale permanente.' },
+  { id: 'guerison_rapide', name: 'Guérison rapide', category: 'Arrière-plan', requirements: 'Novice, Vigueur d8', description: '+2 aux jets de Vigueur pour la guérison naturelle, jet tous les 3 jours au lieu de 5.' },
+  { id: 'linguiste', name: 'Linguiste', category: 'Arrière-plan', requirements: 'Novice, Intellect d6', description: 'Parle et comprend un nombre de langues égal à la moitié de son dé d’Intellect au niveau d6.' },
+  { id: 'notoriete', name: 'Notoriété', category: 'Arrière-plan', requirements: 'Novice', description: '+1 en Persuasion si reconnu et accueil amical, double les gains de rémunération ou spectacle.' },
+  { id: 'celebrite', name: 'Célébrité', category: 'Arrière-plan', requirements: 'Aguerri, Notoriété', description: '+2 en Persuasion si reconnu et accueil amical, gains multipliés par 5 ou plus.' },
+  { id: 'panache', name: 'Panache', category: 'Arrière-plan', requirements: 'Novice, Âme d8', description: '+2 au résultat d’un Trait lorsque vous dépensez un Jeton pour relancer.' },
+  { id: 'resistance_aux_arcanes', name: 'Résistance aux arcanes', category: 'Arrière-plan', requirements: 'Novice, Âme d8', description: 'Inflige un malus de -2 aux jets de pouvoirs qui vous ciblent et +2 à la Résistance contre leurs dégâts.' },
+  { id: 'grande_resistance_aux_arcanes', name: 'Grande résistance aux arcanes', category: 'Arrière-plan', requirements: 'Novice, Résistance aux arcanes', description: 'Inflige -4 aux jets de pouvoirs qui vous ciblent et +4 à la Résistance contre leurs effets/dégâts.' },
+  { id: 'riche', name: 'Riche', category: 'Arrière-plan', requirements: 'Novice', description: 'Crédits et fonds de départ multipliés par 3, revenu annuel aisé.' },
+  { id: 'tres_riche', name: 'Très riche', category: 'Arrière-plan', requirements: 'Novice, Riche', description: 'Crédits et fonds de départ multipliés par 5, compte en banque d’élite.' },
+  { id: 'seduisant', name: 'Séduisant', category: 'Arrière-plan', requirements: 'Novice, Vigueur d6', description: '+1 aux tests de Performance et Persuasion auprès des cibles sensibles à vos charmes.' },
+  { id: 'tres_seduisant', name: 'Très séduisant', category: 'Arrière-plan', requirements: 'Novice, Séduisant', description: '+2 aux tests de Performance et Persuasion auprès des cibles sensibles à vos charmes.' },
+  { id: 'veloce', name: 'Véloce', category: 'Arrière-plan', requirements: 'Novice, Agilité d6', description: 'Allure +2 cases et dé de course augmenté d’un cran (ex: d6 devient d8).' },
+  { id: 'vif', name: 'Vif', category: 'Arrière-plan', requirements: 'Novice, Agilité d8', description: 'Peut repiocher son initiative tant que sa carte d’action est de 5 ou moins, et garde son choix.' },
+  { id: 'vigilant', name: 'Vigilant', category: 'Arrière-plan', requirements: 'Novice', description: '+2 à tous les jets de Perception (visuelle, auditive, sensorielle).' },
+
+  // --- ATOUTS DE COMBAT ---
+  { id: 'arme_fetiche', name: 'Arme fétiche', category: 'Combat', requirements: 'Novice, Compétence d8', description: '+1 en Athlétisme (lancer), Combat ou Tir, ainsi qu’en Parade lorsque vous maniez cette arme spécifique.' },
+  { id: 'arme_fetiche_adoree', name: 'Arme fétiche adorée', category: 'Combat', requirements: 'Aguerri, Arme fétiche', description: '+2 en Athlétisme (lancer), Combat ou Tir, ainsi qu’en Parade avec cette arme désignée.' },
+  { id: 'arts_martiaux', name: 'Arts martiaux', category: 'Combat', requirements: 'Novice, Combat d6', description: '+1 en Combat à mains nues, dégâts For+d4 (considérés comme armes naturelles létales).' },
+  { id: 'maitrise_arts_martiaux', name: 'Maîtrise des arts martiaux', category: 'Combat', requirements: 'Aguerri, Arts martiaux', description: '+2 en Combat à mains nues, dégâts portés à For+d6, armes naturelles létales.' },
+  { id: 'bagarreur', name: 'Bagarreur', category: 'Combat', requirements: 'Novice, Force d8, Vigueur d8', description: 'Résistance +1, coups à mains nues infligent des dégâts For+d4 (ou augmentent les dégâts d’un cran).' },
+  { id: 'cogneur', name: 'Cogneur', category: 'Combat', requirements: 'Aguerri, Bagarreur', description: 'Résistance +2, dégâts à mains nues For+d6 (ou +2 crans).' },
+  { id: 'balayage', name: 'Balayage', category: 'Combat', requirements: 'Novice, Force d8, Combat d8', description: 'Attaque toutes les cibles adjacentes avec un seul jet de Combat à -2 (max. 1/tour).' },
+  { id: 'grand_balayage', name: 'Grand balayage', category: 'Combat', requirements: 'Vétéran, Balayage', description: 'Attaque toutes les cibles dans l’allonge sans subir le malus de -2 (max. 1/tour).' },
+  { id: 'blocage', name: 'Blocage', category: 'Combat', requirements: 'Aguerri, Combat d8', description: 'Parade +1 et réduit de 1 le bonus d’Attaque à plusieurs dont bénéficient les adversaires contre vous.' },
+  { id: 'grand_blocage', name: 'Grand blocage', category: 'Combat', requirements: 'Vétéran, Blocage', description: 'Parade +2 et réduit de 2 le bonus d’Attaque à plusieurs adverse.' },
+  { id: 'calculateur', name: 'Calculateur', category: 'Combat', requirements: 'Novice, Intellect d8', description: 'Si la carte d’action est de 5 ou moins, ignore 2 points de malus sur une action de votre tour.' },
+  { id: 'combat_deux_armes', name: 'Combat à deux armes', category: 'Combat', requirements: 'Novice, Agilité d8', description: 'Ignore 2 points de pénalité d’actions multiples pour une 2e attaque de mêlée avec l’autre main.' },
+  { id: 'combatif', name: 'Combatif', category: 'Combat', requirements: 'Aguerri', description: '+2 aux jets d’Âme ou Vigueur pour récupérer de l’état Secoué ou Sonné.' },
+  { id: 'contre_attaque', name: 'Contre-attaque', category: 'Combat', requirements: 'Aguerri, Combat d8', description: 'Si ni Secoué ni Sonné, riposte gratuite contre un assaillant au corps-à-corps ayant échoué (max 1/round).' },
+  { id: 'grande_contre_attaque', name: 'Grande contre-attaque', category: 'Combat', requirements: 'Vétéran, Contre-attaque', description: 'Attaque de riposte gratuite contre jusqu’à 3 assaillants ayant échoué contre vous par round.' },
+  { id: 'coup_puissant', name: 'Coup puissant', category: 'Combat', requirements: 'Novice, Joker, Combat d8', description: 'Si vous avez tiré un Joker à l’initiative, doublez vos dégâts sur votre premier coup de Combat réussi.' },
+  { id: 'coureur', name: 'Coureur', category: 'Combat', requirements: 'Novice, Agilité d8, Athlétisme d6', description: 'À pied, ignore les terrains difficiles et bénéficie de +2 en Athlétisme (escalade et poursuite).' },
+  { id: 'dans_le_mille', name: 'Dans le mille !', category: 'Combat', requirements: 'Aguerri, Joker, Athlétisme ou Tir d8', description: 'Si vous tirez un Joker, doublez vos dégâts sur votre premier tir réussi du tour.' },
+  { id: 'double_detente', name: 'Double détente', category: 'Combat', requirements: 'Aguerri, Tir d6', description: '+1 au jet de Tir et aux dégâts en tir coup par coup ou +2 en Rafale courte (consomme munitions ×2).' },
+  { id: 'double_flingue', name: 'Double flingue', category: 'Combat', requirements: 'Novice, Agilité d8', description: 'Ignore 2 points de pénalité d’actions multiples pour une 2e attaque à distance avec l’autre main.' },
+  { id: 'esquive', name: 'Esquive', category: 'Combat', requirements: 'Aguerri, Agilité d8', description: 'Les tirs et attaques à distance adverses subissent un malus de -2 pour vous toucher.' },
+  { id: 'grande_esquive', name: 'Grande esquive', category: 'Combat', requirements: 'Aguerri, Esquive', description: '+2 aux jets d’Agilité pour esquiver les explosions et attaques à gabarit de zone.' },
+  { id: 'extraction', name: 'Extraction', category: 'Combat', requirements: 'Novice, Agilité d8', description: 'En rompant le contact au corps-à-corps, annule 1 attaque gratuite adverse.' },
+  { id: 'grande_extraction', name: 'Grande extraction', category: 'Combat', requirements: 'Aguerri, Extraction', description: 'En rompant le contact, annule jusqu’à 3 attaques gratuites d’adversaires.' },
+  { id: 'feinte', name: 'Feinte', category: 'Combat', requirements: 'Novice, Combat d8', description: 'Lors d’une Épreuve de Combat, peut contraindre la victime à résister avec son Intellect au lieu de son Agilité.' },
+  { id: 'frappe_eclair', name: 'Frappe éclair', category: 'Combat', requirements: 'Novice, Agilité d8', description: 'Si ni Secoué ni Sonné, porte une attaque gratuite contre le premier ennemi entrant dans son allonge.' },
+  { id: 'frappe_foudroyante', name: 'Frappe foudroyante', category: 'Combat', requirements: 'Héroïque, Frappe éclair', description: 'Porte une attaque gratuite contre jusqu’à 3 ennemis pénétrant dans son allonge par round.' },
+  { id: 'frenesie', name: 'Frénésie', category: 'Combat', requirements: 'Aguerri, Combat d8', description: 'Peut ajouter un second dé de Combat à l’une de ses attaques au corps-à-corps (max 1/tour).' },
+  { id: 'frenesie_supreme', name: 'Frénésie suprême', category: 'Combat', requirements: 'Vétéran, Frénésie', description: 'Peut ajouter un second dé de Combat sur deux attaques au corps-à-corps distinctes par tour.' },
+  { id: 'improvisation_martiale', name: 'Improvisation martiale', category: 'Combat', requirements: 'Aguerri, Intellect d6', description: 'Ignore totalement la pénalité de -2 lors du maniement d’armes improvisées.' },
+  { id: 'increvable', name: 'Increvable', category: 'Combat', requirements: 'Novice, Âme d8', description: 'Ignore les malus de Blessures lors des jets de Vigueur pour éviter de saigner à mort.' },
+  { id: 'trompe_la_mort', name: 'Trompe-la-mort', category: 'Combat', requirements: 'Vétéran, Increvable', description: 'En cas d’incapacité mortelle, lance un dé : si le résultat est pair, survit miraculeusement.' },
+  { id: 'instinct_de_tueur', name: 'Instinct de tueur', category: 'Combat', requirements: 'Aguerri', description: 'Relance gratuite sur tout test de Trait opposé lorsqu’il impose une Épreuve.' },
+  { id: 'machoire_acier', name: 'Mâchoire d’acier', category: 'Combat', requirements: 'Novice, Vigueur d8', description: '+2 aux jets de Vigueur pour Encaisser les dégâts et pour résister aux coups assommants.' },
+  { id: 'nerfs_acier', name: 'Nerfs d’acier', category: 'Combat', requirements: 'Novice, Vigueur d8', description: 'Ignore 1 point de malus total lié aux Blessures.' },
+  { id: 'nerfs_acier_trempe', name: 'Nerfs d’acier trempé', category: 'Combat', requirements: 'Novice, Nerfs d’acier', description: 'Ignore jusqu’à 2 points de malus total liés aux Blessures.' },
+  { id: 'poigne_ferme', name: 'Poigne ferme', category: 'Combat', requirements: 'Novice, Agilité d8', description: 'Ignore le malus de -2 lié aux plateformes instables (véhicules) et le malus de -1 en courant.' },
+  { id: 'rock_n_roll', name: 'Rock’n roll !', category: 'Combat', requirements: 'Aguerri, Tir d8', description: 'En restant immobile, ignore le malus de Recul (-2) lors du tir automatique ou rafales soutenues.' },
+  { id: 'sans_pitie', name: 'Sans pitié', category: 'Combat', requirements: 'Aguerri', description: '+2 aux dégâts lorsqu’un Jeton est dépensé pour relancer les dégâts.' },
+  { id: 'tete_froide', name: 'Tête froide', category: 'Combat', requirements: 'Aguerri, Intellect d8', description: 'Tire 1 carte d’action supplémentaire à chaque round d’initiative et choisit celle à conserver.' },
+  { id: 'sang_froid', name: 'Sang-froid', category: 'Combat', requirements: 'Aguerri, Tête froide', description: 'Tire 2 cartes d’action supplémentaires à l’initiative et choisit sa préférée.' },
+  { id: 'tir_rapide', name: 'Tir rapide', category: 'Combat', requirements: 'Aguerri, Tir d6', description: 'Augmente la Cadence de Tir (CdT) de +1 pour une attaque à distance par tour.' },
+  { id: 'tir_tres_rapide', name: 'Tir très rapide', category: 'Combat', requirements: 'Vétéran, Tir rapide', description: 'Augmente la CdT de +1 pour deux attaques à distance distinctes par tour.' },
+  { id: 'tireur_elite', name: 'Tireur d’élite', category: 'Combat', requirements: 'Aguerri, Athlétisme d8 ou Tir d8', description: 'Sans bouger en CdT 1, +1 au Tir/Lancer ou ignore 2 points de pénalités (visée, portée, abri).' },
+  { id: 'tueur_de_geant', name: 'Tueur de géant', category: 'Combat', requirements: 'Vétéran', description: 'Inflige +1d6 de dégâts supplémentaires contre toute cible ayant 3 crans de Taille ou plus que lui.' },
+
+  // --- ATOUTS DE COMMANDEMENT ---
+  { id: 'commandement', name: 'Commandement', category: 'Commandement', requirements: 'Novice, Intellect d6', description: '+1 aux jets pour annuler Secoué ou Sonné pour tout allié Extra dans un rayon de 5 cases.' },
+  { id: 'grande_aura_commandement', name: 'Grande aura de commandement', category: 'Commandement', requirements: 'Aguerri, Commandement', description: 'Portée de l’aura de commandement doublée, passant à 10 cases (20 mètres).' },
+  { id: 'ferveur', name: 'Ferveur', category: 'Commandement', requirements: 'Vétéran, Âme d8, Commandement', description: '+1 aux dégâts de Combat au corps-à-corps pour tous les Extras alliés dans l’aura.' },
+  { id: 'inspiration', name: 'Inspiration', category: 'Commandement', requirements: 'Aguerri, Commandement', description: 'Peut utiliser Stratégie pour Soutenir un Trait de n’importe quel Extra dans l’aura (max 1/tour).' },
+  { id: 'leader_naturel', name: 'Leader naturel', category: 'Commandement', requirements: 'Aguerri, Âme d8, Commandement', description: 'Vos Atouts de commandement s’appliquent désormais aussi aux Jokers alliés (PJ et PNJ majeurs).' },
+  { id: 'serrez_les_rangs', name: 'Serrez les rangs !', category: 'Commandement', requirements: 'Aguerri, Intellect d8, Commandement', description: '+1 à la Résistance pour tous les Extras alliés présents dans votre aura de commandement.' },
+  { id: 'tacticien', name: 'Tacticien', category: 'Commandement', requirements: 'Aguerri, Intellect d8, Commandement, Stratégie d6', description: 'Pioche 1 carte d’action supplémentaire et la donne à un Extra allié dans son aura.' },
+  { id: 'maitre_tacticien', name: 'Maître tacticien', category: 'Commandement', requirements: 'Vétéran, Tacticien', description: 'Pioche 2 cartes d’action supplémentaires et les attribue à des Extras alliés dans son aura.' },
+
+  // --- ATOUTS DE POUVOIR ---
+  { id: 'afflux_de_pouvoir', name: 'Afflux de pouvoir', category: 'Pouvoir', requirements: 'Novice, Joker, Arcanes, Compétence d’arcanes d8', description: 'Si vous tirez un Joker à l’initiative, recharge immédiatement 10 Points de Pouvoir.' },
+  { id: 'artificier', name: 'Artificier', category: 'Pouvoir', requirements: 'Aguerri, Arcanes', description: 'Permet d’insuffler des pouvoirs dans des objets et reliques arcaniques à partager.' },
+  { id: 'bricoleur_de_genie_arcanes', name: 'Bricoleur de génie (Arcanes)', category: 'Pouvoir', requirements: 'Aguerri, Arcanes (Science étrange), Science étrange d6', description: 'Jet de Science étrange à -2 pour improviser un gadget doté d’un pouvoir inconnu (max 3 PP).' },
+  { id: 'canalisation', name: 'Canalisation', category: 'Pouvoir', requirements: 'Aguerri, Arcanes', description: 'Réduit de 1 PP le coût d’activation d’un pouvoir si le jet d’arcanes obtient une Prouesse.' },
+  { id: 'concentration', name: 'Concentration', category: 'Pouvoir', requirements: 'Aguerri, Arcanes', description: 'Double la durée de base et la durée de maintien des pouvoirs arcaniques activés.' },
+  { id: 'drain_de_l_ame', name: 'Drain de l’âme', category: 'Pouvoir', requirements: 'Aguerri, Arcanes, Compétence d’arcanes d10', description: 'Permet de regagner +5 ou +10 PP immédiatement en s’infligeant 1 ou 2 niveaux de Fatigue.' },
+  { id: 'effort_supplementaire', name: 'Effort supplémentaire', category: 'Pouvoir', requirements: 'Aguerri, Arcanes (Don), Focus d6', description: '+1 ou +2 au jet de Focus pour 1 ou 3 PP dépensés après avoir vu le résultat.' },
+  { id: 'guerrier_saint_impie', name: 'Guerrier saint / impie', category: 'Pouvoir', requirements: 'Aguerri, Arcanes (Miracles), Foi d6', description: 'Dépense des PP pour augmenter de +1 par point (max +4) son jet d’Encaissement après coup.' },
+  { id: 'mage', name: 'Mage', category: 'Pouvoir', requirements: 'Aguerri, Arcanes (Magie), Magie d6', description: 'Permet de modifier l’Aspect d’un sort au moment de son incantation pour +1 PP.' },
+  { id: 'mentaliste', name: 'Mentaliste', category: 'Pouvoir', requirements: 'Aguerri, Arcanes (Psioniques), Psioniques d6', description: '+2 à tous les jets de Psioniques lors d’une opposition mentale directe.' },
+  { id: 'nouveaux_pouvoirs', name: 'Nouveaux pouvoirs', category: 'Pouvoir', requirements: 'Novice, Arcanes', description: 'Apprend instantanément 2 nouveaux pouvoirs de son rang ou inférieur.' },
+  { id: 'points_de_pouvoir', name: 'Points de pouvoir', category: 'Pouvoir', requirements: 'Novice, Arcanes', description: '+5 Points de Pouvoir supplémentaires dans sa réserve arcanique (max 1/Rang).' },
+  { id: 'source_de_pouvoir', name: 'Source de pouvoir', category: 'Pouvoir', requirements: 'Aguerri, Âme d6, Arcanes', description: 'Recharge 10 Points de Pouvoir par heure de repos complet au lieu de 5.' },
+  { id: 'grande_source_de_pouvoir', name: 'Grande source de pouvoir', category: 'Pouvoir', requirements: 'Vétéran, Source de pouvoir', description: 'Recharge 20 Points de Pouvoir par heure de repos complet.' },
+
+  // --- ATOUTS ÉTRANGES ---
+  { id: 'champion', name: 'Champion', category: 'Étrange', requirements: 'Novice, Âme d8, Combat d6', description: '+2 aux dégâts portés contre les abominations surnaturelles ou créatures du mal absolu.' },
+  { id: 'chi', name: 'Chi', category: 'Étrange', requirements: 'Vétéran, Maîtrise des arts martiaux', description: '1 fois/combat: relance une attaque échouée, fait relancer une attaque ennemie ou ajoute +1d6 aux dégâts.' },
+  { id: 'courage_liquide', name: 'Courage liquide', category: 'Étrange', requirements: 'Novice, Vigueur d8', description: 'Sous l’effet de l’alcool : Vigueur +1 cran, Résistance +1, ignore 1 blessure, mais Intellect/Agilité -1.' },
+  { id: 'guerisseur', name: 'Guérisseur', category: 'Étrange', requirements: 'Novice, Âme d8', description: '+2 à tous les jets de Soins prodigués, qu’ils soient médicaux conventionnels ou magiques.' },
+  { id: 'lien_animal', name: 'Lien animal', category: 'Étrange', requirements: 'Novice', description: 'Peut dépenser ses propres Jetons pour accorder des relances ou des encaissements à ses animaux de compagnie.' },
+  { id: 'maitre_des_betes', name: 'Maître des bêtes', category: 'Étrange', requirements: 'Novice, Âme d8', description: 'Les animaux ne l’attaquent pas spontanément et il gagne un compagnon animal dévoué (loup, chien, etc.).' },
+  { id: 'recycleur', name: 'Recycleur', category: 'Étrange', requirements: 'Novice, Chanceux', description: '1 fois par scène, trouve miraculeusement un objet utile de petite taille avec l’accord du MJ.' },
+  { id: 'sixieme_sens', name: 'Sixième sens', category: 'Étrange', requirements: 'Novice', description: '+2 en Perception pour pressentir un danger ou une embuscade, peut faire un test même en cas de surprise.' },
+
+  // --- ATOUTS PROFESSIONNELS ---
+  { id: 'acrobate', name: 'Acrobate', category: 'Professionnel', requirements: 'Novice, Agilité d8, Athlétisme d8', description: 'Relance gratuite en Athlétisme pour les acrobaties, la lutte et les épreuves d’équilibre.' },
+  { id: 'acrobate_de_combat', name: 'Acrobate de combat', category: 'Professionnel', requirements: 'Aguerri, Acrobate', description: 'Les attaques ennemies de mêlée et à distance subissent un malus de -1 pour vous toucher.' },
+  { id: 'as', name: 'As', category: 'Professionnel', requirements: 'Novice, Agilité d8', description: 'Ignore -2 en Conduite, Navigation et Pilotage. Peut Encaisser les dégâts du véhicule pour 1 Jeton.' },
+  { id: 'assassin', name: 'Assassin', category: 'Professionnel', requirements: 'Novice, Agilité d8, Combat d6, Discrétion d8', description: '+2 aux dégâts contre toute cible surprise ou affectée par l’état Vulnérable.' },
+  { id: 'bidouilleur', name: 'Bidouilleur', category: 'Professionnel', requirements: 'Novice, Réparation d8', description: '+2 aux jets de Réparation. En cas de Prouesse, divise par deux le temps d’intervention.' },
+  { id: 'debrouillard', name: 'Débrouillard', category: 'Professionnel', requirements: 'Novice, Intellect d6, Perception d8, Réparation d6', description: 'Capable de fabriquer des gadgets et outils improvisés ultra-rapidement avec les moyens du bord.' },
+  { id: 'erudit', name: 'Érudit', category: 'Professionnel', requirements: 'Novice, Recherche d8', description: '+2 aux tests dans deux compétences de connaissances choisies (Sciences, Occultisme, Éducation...).' },
+  { id: 'forestier', name: 'Forestier', category: 'Professionnel', requirements: 'Novice, Âme d6, Survie d8', description: '+2 en Discrétion et en Survie dans les environnements naturels sauvages.' },
+  { id: 'investigateur', name: 'Investigateur', category: 'Professionnel', requirements: 'Novice, Intellect d8, Recherche d8', description: '+2 en Recherche documentaire et en Perception lors de la recherche d’indices.' },
+  { id: 'soldat', name: 'Soldat', category: 'Professionnel', requirements: 'Novice, Force d6, Vigueur d6', description: 'Force augmentée d’un cran pour l’encombrement, Relance gratuite en Vigueur contre les périls environnementaux.' },
+  { id: 'touche_a_tout', name: 'Touche-à-Tout', category: 'Professionnel', requirements: 'Novice, Intellect d10', description: 'Après 1h d’étude et un jet d’Intellect réussi, maîtrise une compétence non possédée à d4 (d6 sur Prouesse).' },
+  { id: 'voleur', name: 'Voleur', category: 'Professionnel', requirements: 'Novice, Agilité d8, Discrétion d6, Subterfuge d6', description: '+1 en Athlétisme (escalade) et Discrétion en ville, +1 à tous les jets de Subterfuge (crochetage/pièges).' },
+  { id: 'as_clavier', name: 'As du Clavier (Hacker)', category: 'Professionnel', requirements: 'Novice, Hacking d8, Intellect d8', description: '+2 aux tests d’intrusion et piratage informatique, divise le temps de pénétration des nœuds réseau.' },
+
+  // --- ATOUTS SOCIAUX ---
+  { id: 'agitateur', name: 'Agitateur', category: 'Social', requirements: 'Aguerri, Âme d8', description: 'Peut utiliser Intimidation ou Provocation sur un Gabarit moyen (toutes les cibles résistent séparément).' },
+  { id: 'chauffeur_de_salle', name: 'Chauffeur de salle', category: 'Social', requirements: 'Novice, Âme d8', description: 'Peut lancer un 2e dé de Persuasion ou Performance lors d’une action de Soutien (max 1/tour).' },
+  { id: 'chauffeur_de_foule', name: 'Chauffeur de foule', category: 'Social', requirements: 'Aguerri, Chauffeur de salle', description: 'Peut lancer un 2e dé de Persuasion ou Performance en Soutien jusqu’à 2 fois par tour.' },
+  { id: 'contacts', name: 'Contacts', category: 'Social', requirements: 'Novice', description: 'Dispose d’un réseau d’alliés influents capable de lui rendre un service majeur par session.' },
+  { id: 'determine', name: 'Déterminé', category: 'Social', requirements: 'Novice, Âme d8', description: '+2 aux jets d’Âme ou d’Intellect pour résister aux Épreuves mentales et provocations adverses.' },
+  { id: 'volonte_de_fer', name: 'Volonté de fer', category: 'Social', requirements: 'Aguerri, Brave, Déterminé', description: '+2 en Âme ou Intellect pour résister aux pouvoirs psioniques/magiques ou en annuler l’emprise.' },
+  { id: 'fiable', name: 'Fiable', category: 'Social', requirements: 'Novice, Âme d8', description: 'Relance gratuite sur tous vos jets d’action de Soutien en faveur de vos camarades.' },
+  { id: 'humiliation', name: 'Humiliation', category: 'Social', requirements: 'Novice, Provocation d8', description: 'Relance gratuite sur tous vos tests de Provocation.' },
+  { id: 'lien_mutuel', name: 'Lien mutuel', category: 'Social', requirements: 'Novice, Joker, Âme d8', description: 'Peut transférer et partager ses propres Jetons avec n’importe lequel de ses compagnons de groupe.' },
+  { id: 'menacant', name: 'Menaçant', category: 'Social', requirements: 'Novice', description: '+2 à tous vos jets d’Intimidation contre des personnes sensibles à l’intimidation physique ou verbale.' },
+  { id: 'pique_revigorante', name: 'Pique revigorante', category: 'Social', requirements: 'Novice, Âme d8', description: 'Si vous réussissez avec Prouesse un jet contre une Épreuve, annulez l’état Distrait ou Vulnérable d’un allié.' },
+  { id: 'provocateur', name: 'Provocateur', category: 'Social', requirements: 'Novice, Provocation d6', description: 'Sur une Prouesse en Provocation, force la cible à subir un malus de -2 si elle cible un autre personnage que vous.' },
+  { id: 'replique_acerbe', name: 'Réplique acerbe', category: 'Social', requirements: 'Novice, Provocation d6', description: 'En résistant avec Prouesse à une Intimidation ou Provocation, l’agresseur devient Distrait.' },
+  { id: 'reseau', name: 'Réseau', category: 'Social', requirements: 'Novice, Intellect d6', description: '+2 en Culture générale et Réseautage au sein des milieux criminels, corpos souterraines et bas-fonds.' },
+
+  // --- ATOUTS LÉGENDAIRES ---
+  { id: 'acolyte', name: 'Acolyte', category: 'Légendaire', requirements: 'Légendaire, Joker', description: 'Dispose d’un allié PNJ dévoué ayant le statut de Joker à part entière.' },
+  { id: 'endurci', name: 'Endurci', category: 'Légendaire', requirements: 'Légendaire, Vigueur d8', description: 'Peut subir 4 Blessures avant de sombrer dans l’Incapacité (malus max plafonné à -3).' },
+  { id: 'coriace', name: 'Coriace', category: 'Légendaire', requirements: 'Légendaire, Endurci, Vigueur d12', description: 'Peut encaisser jusqu’à 5 Blessures avant d’être terrassé (malus max -3).' },
+  { id: 'maitre_armes', name: 'Maître d’armes', category: 'Légendaire', requirements: 'Légendaire, Combat d12', description: 'Parade +1 et le dé bonus de dégâts sur un coup réussi avec Prouesse passe à un d8.' },
+  { id: 'maitre_armes_legendaire', name: 'Maître d’armes légendaire', category: 'Légendaire', requirements: 'Légendaire, Maître d’armes', description: 'Parade +2 et le dé de dégâts supplémentaire sur une Prouesse passe à un d10.' },
+  { id: 'professionnel', name: 'Professionnel', category: 'Légendaire', requirements: 'Légendaire, Trait max d12', description: 'Augmente d’un cran un Trait (Attribut ou Compétence) ainsi que son plafond maximal (ex: d12+1).' },
+  { id: 'expert', name: 'Expert', category: 'Légendaire', requirements: 'Légendaire, Trait Professionnel', description: 'Augmente de deux crans le Trait choisi ainsi que son plafond (ex: d12+2).' },
+  { id: 'maitre', name: 'Maître', category: 'Légendaire', requirements: 'Légendaire, Joker, Trait Expert', description: 'Lors d’un jet avec le Trait choisi, le dé Joker devient un d10 au lieu d’un d6.' },
+  { id: 'suivants', name: 'Suivants', category: 'Légendaire', requirements: 'Légendaire, Joker', description: 'Attire à lui 5 acolytes Extras fanatiques ou dévoués prêts à obéir à ses ordres.' },
+
+  // --- ATOUTS CYBER & INTERFACE ZERO ---
+  { id: 'guerrier_augmente', name: 'Guerrier Augmenté', category: 'Cyber', requirements: 'Novice, Au moins 2 implants cybernétiques', description: '+1 en Parade et +1 en Résistance lorsque les implants cybernétiques fonctionnent.', isCyber: true },
+  { id: 'maitre_tap', name: 'Maître du TAP', category: 'Cyber', requirements: 'Novice, Intellect d8', description: '+2 au Firewall de votre TAP et permet d’exécuter deux applications TAP en tâche de fond simultanément.', isCyber: true },
+  { id: 'interference', name: 'Interférence', category: 'Cyber', requirements: 'Novice, Hacking d6', description: 'Inflige un malus de -2 aux hackers ennemis tentant de pénétrer votre réseau PAN ou votre TAP.', isCyber: true },
+  { id: 'tolerance_cybernetique', name: 'Tolérance Cybernétique', category: 'Cyber', requirements: 'Novice, Vigueur d8', description: 'Augmente votre seuil maximal tolérable de Cybertension de +2 points.', isCyber: true },
+  { id: 'lien_machine', name: 'Lien Machine (Rigger)', category: 'Cyber', requirements: 'Novice, Interface de pilotage neurale', description: 'Prend les commandes mentales des drones et véhicules sans décalage réflexe (+2 aux manœuvres).', isCyber: true }
 ];
 
 export const HINDRANCES_CATALOG: HindranceDefinition[] = [
-  { id: 'code_honneur', name: 'Code d’Honneur', severity: 'Majeur', description: 'Tient toujours sa parole, refuse d’attaquer un ennemi désarmé et protège ses clients au péril de sa vie.' },
-  { id: 'recherche_syndicat', name: 'Recherché par la Mafia', severity: 'Majeur', description: 'Une prime substantielle a été mise sur votre tête par un cartel criminel ou un mégacorp.' },
-  { id: 'curieux', name: 'Curieux Insatiable', severity: 'Majeur', description: 'Ne peut résister à l’envie d’ouvrir un fichier encrypté ou d’explorer une pièce sécurisée.' },
-  { id: 'cupide', name: 'Cupide', severity: 'Majeur', description: 'L’argent est votre seule boussole morale. Prêt à renégocier un contrat pour le plus offrant.' },
-  { id: 'ennemi_corpo', name: 'Ennemi Corpo', severity: 'Mineur/Majeur', description: 'Une mégacorporation spécifique traque vos agissements et pirate vos comptes bancaires.' },
-  { id: 'physique_chetif', name: 'Chétif', severity: 'Mineur', description: 'Résistance réduite de 1 en raison d’une constitution physique fragile.' },
-  { id: 'tetu', name: 'Têtu comme une mule', severity: 'Mineur', description: 'Refuse de suivre les ordres d’autrui et insiste toujours pour avoir le dernier mot.' },
-  { id: 'paranoiaque', name: 'Paranoïaque', severity: 'Mineur', description: 'Vérifie chaque boisson, change de cyberdeck chaque semaine et ne dort que d’un œil.' },
-  { id: 'dependance_slam', name: 'Dépendance Chimique (Slam / Neuro-Boost)', severity: 'Majeur', description: 'Doit consommer sa dose sous 24h sous peine de tremblements et malus de -2 à tous les jets.' },
-  { id: 'arrogant', name: 'Arrogant', severity: 'Majeur', description: 'Méprise ouvertement ceux qu’il estime intellectuellement ou biologiquement inférieurs.' }
+  // --- HANDICAPS OFFICIELS SWADE ---
+  { id: 'age', name: 'Âgé', severity: 'Majeur', description: 'Allure et course réduites de 1. Agilité, Force et Vigueur -1 cran. En contrepartie, gagne +5 points de Compétences liées à l’Intellect.' },
+  { id: 'anemique', name: 'Anémique', severity: 'Mineur', description: 'Subit un malus de -2 à tous les jets de Vigueur pour résister à la Fatigue (poisons, maladies, épuisement).' },
+  { id: 'arrogant', name: 'Arrogant', severity: 'Majeur', description: 'Aime dominer son opposant, méprise les faibles et confronte toujours en priorité le leader ou l’ennemi le plus puissant.' },
+  { id: 'aveugle', name: 'Aveugle', severity: 'Majeur', description: 'Toute action nécessitant la vue subit un malus de -6. Reçoit un Atout supplémentaire gratuit pour compenser.' },
+  { id: 'bavard', name: 'Bavard', severity: 'Mineur', description: 'Incapable de garder un secret ou sa langue dans sa poche, laisse toujours échapper des détails confidentiels.' },
+  { id: 'bizarrerie', name: 'Bizarrerie', severity: 'Mineur', description: 'Possède un travers comportemental agaçant ou une manie étrange qui importune régulièrement son entourage.' },
+  { id: 'borgne', name: 'Borgne', severity: 'Majeur', description: 'Subit un malus de -2 à toutes les actions utilisant la vue à plus de 5 cases (10 mètres) de distance.' },
+  { id: 'chimere', name: 'Chimère', severity: 'Mineur/Majeur', description: 'Croit dur comme fer à des fables ou conspirations absurdes lui attirant des ennuis occasionnels ou constants.' },
+  { id: 'code_honneur', name: 'Code d’honneur', severity: 'Majeur', description: 'Ne trahit jamais sa parole donnée, protège les faibles, refuse les coups traîtres et se conduit loyalement.' },
+  { id: 'couard', name: 'Couard', severity: 'Majeur', description: 'Subit un malus de -2 aux jets de Terreur et pour résister aux tentatives d’Intimidation.' },
+  { id: 'cupide', name: 'Cupide', severity: 'Mineur/Majeur', description: 'Obsédé par l’appât du gain et l’accumulation de richesses matérielles au détriment de toute prudence.' },
+  { id: 'curieux', name: 'Curieux', severity: 'Majeur', description: 'Ne peut s’empêcher de fourrer son nez partout, d’ouvrir les portes closes et de fouiller les dossiers défendus.' },
+  { id: 'defaut_elocution', name: 'Défaut d’élocution', severity: 'Majeur', description: 'Bégaiement ou trouble vocal prononcé : malus de -1 en Intimidation, Performance, Persuasion et Provocation orales.' },
+  { id: 'deshonore', name: 'Déshonoré', severity: 'Mineur/Majeur', description: 'Hanté par un drame, une trahison ou une ignominie de son passé qui ternit sa réputation.' },
+  { id: 'deux_mains_gauches', name: 'Deux mains gauches', severity: 'Mineur', description: 'Malus de -2 pour utiliser tout appareil mécanique ou technologique. En cas d’Échec critique, l’objet tombe en panne.' },
+  { id: 'dur_oreille', name: 'Dur d’oreille', severity: 'Mineur/Majeur', description: 'Malus de -4 aux jets de Perception auditive (Mineur) ou surdité complète provoquant un échec automatique (Majeur).' },
+  { id: 'ennemi', name: 'Ennemi', severity: 'Mineur/Majeur', description: 'Possède une némésis jurée récurrente (un cartel rival, un tueur à gages ou un ex-partenaire trahi).' },
+  { id: 'etranger', name: 'Étranger', severity: 'Mineur/Majeur', description: 'Perçu avec méfiance, malus de -2 en Persuasion (sauf auprès des siens). Sans statut légal ni droits si Majeur.' },
+  { id: 'frele', name: 'Frêle', severity: 'Mineur', description: 'Taille réduite de 1 (min. -1) et par conséquent Résistance réduite de 1 point.' },
+  { id: 'gamin', name: 'Gamin', severity: 'Mineur/Majeur', description: 'Mineur : 4 pts d’Attributs, 10 de Compétences, +1 Jeton/session. Majeur : 3 pts Attributs, 10 Compétences, +2 Jetons, Handicap Frêle.' },
+  { id: 'heroique', name: 'Héroïque', severity: 'Majeur', description: 'Ne refuse jamais de secourir son prochain et prend des risques mortels pour protéger les innocents.' },
+  { id: 'hesitant', name: 'Hésitant', severity: 'Mineur', description: 'Tire deux cartes d’initiative et garde la pire (sauf si Joker). Incompatible avec les Atouts Vif et Tête froide.' },
+  { id: 'ignorant', name: 'Ignorant', severity: 'Majeur', description: 'Manque cruellement de culture générale et de bon sens : malus de -1 en Culture générale et Perception.' },
+  { id: 'illettre', name: 'Illettré', severity: 'Mineur', description: 'Ne sait ni lire ni écrire, incapable de déchiffrer des panneaux ou documents textuels.' },
+  { id: 'impitoyable', name: 'Impitoyable', severity: 'Mineur/Majeur', description: 'Prend tous les raccourcis moraux pour réussir sa mission. N’hésite pas à torturer ou achever les témoins si Majeur.' },
+  { id: 'impulsif', name: 'Impulsif', severity: 'Majeur', description: 'Agit avant de réfléchir, incapable de temporiser ou de suivre un plan minutieux sans craquer.' },
+  { id: 'jaloux', name: 'Jaloux', severity: 'Mineur/Majeur', description: 'Envie maladivement le succès, le matériel, le statut ou les compétences de ses pairs.' },
+  { id: 'lent', name: 'Lent', severity: 'Mineur/Majeur', description: 'Mineur : Allure -1, dé de course -1 cran. Majeur : Allure et Athlétisme -2, dé de course -1 cran. Interdit Véloce.' },
+  { id: 'lourdaud', name: 'Lourdaud', severity: 'Majeur', description: 'Manque total de grâce physique : subit un malus de -2 à tous les jets d’Athlétisme et de Discrétion.' },
+  { id: 'loyal', name: 'Loyal', severity: 'Mineur', description: 'Ne trahira ni n’abandonnera jamais un camarade ou un employeur respecté, même face au peloton d’exécution.' },
+  { id: 'malchanceux', name: 'Malchanceux', severity: 'Majeur', description: 'Commence chaque session de jeu avec 1 Jeton de moins que la normale. Incompatible avec Chanceux.' },
+  { id: 'manchot', name: 'Manchot', severity: 'Majeur', description: 'A perdu l’usage d’un bras. Subit un malus de -4 sur toute tâche exigeant l’utilisation des deux mains.' },
+  { id: 'mauvaise_habitude', name: 'Mauvaise habitude', severity: 'Mineur/Majeur', description: 'Addiction ou vice compulsif (drogue, alcool, tabac de synthèse, jeu). Subit de la Fatigue en état de manque.' },
+  { id: 'mauvais_nageur', name: 'Mauvais nageur', severity: 'Mineur', description: 'Malus de -2 en Athlétisme pour nager, chaque case franchie dans l’eau coûte 3 cases d’Allure.' },
+  { id: 'moche', name: 'Moche', severity: 'Mineur/Majeur', description: 'Physique repoussant, cicatrices hideuses ou allure sinistre : malus de -1 (Mineur) ou -2 (Majeur) en Persuasion.' },
+  { id: 'muet', name: 'Muet', severity: 'Majeur', description: 'Incapable d’émettre des sons articulés ou de parler oralement, communique par signes ou via le TAP.' },
+  { id: 'myope', name: 'Myope', severity: 'Mineur/Majeur', description: 'Malus de -1 ou -2 aux actions utilisant la vue. Annulé par des lunettes (50% de chance d’être brisées lors d’un choc).' },
+  { id: 'obese', name: 'Obèse', severity: 'Mineur', description: 'Taille +1 (donc Résistance +1), Allure -1, dé de course et Force min. réduits d’un cran.' },
+  { id: 'obligations', name: 'Obligations', severity: 'Mineur/Majeur', description: 'Engagements stricts qui accaparent 20h/semaine (Mineur) ou 40h+/semaine (Majeur) de son temps libre.' },
+  { id: 'obsession', name: 'Obsession', severity: 'Mineur/Majeur', description: 'Une croisade personnelle, une passion dévorante ou une idée fixe dicte toutes ses actions majeures.' },
+  { id: 'pacifiste', name: 'Pacifiste', severity: 'Mineur/Majeur', description: 'Ne combat que pour sauver des vies en dernier recours (Mineur) ou refuse strictement toute violence létale (Majeur).' },
+  { id: 'phobie', name: 'Phobie', severity: 'Mineur/Majeur', description: 'Peur panique (araignées, hauteurs, foule, machines). Malus de -1 ou -2 en présence de l’objet phobique.' },
+  { id: 'poches_percees', name: 'Poches percées', severity: 'Mineur', description: 'Fonds et crédits de départ divisés par deux. Claque tout son argent dès qu’il en gagne.' },
+  { id: 'presomptueux', name: 'Présomptueux', severity: 'Majeur', description: 'Persuadé d’être au-dessus de tout le monde, sous-estime constamment le danger et ses adversaires.' },
+  { id: 'prudent', name: 'Prudent', severity: 'Mineur', description: 'Vérifie chaque issue, soupçonne chaque plan et refuse d’agir sans plan de repli minutieux.' },
+  { id: 'rancunier', name: 'Rancunier', severity: 'Mineur/Majeur', description: 'N’oublie aucun affront. Se venge dès que l’occasion se présente, de manière sanglante si Majeur.' },
+  { id: 'recherche', name: 'Recherché', severity: 'Mineur/Majeur', description: 'Sous le coup d’un mandat d’arrêt ou d’un contrat corpo. Risque l’amende/cellule (Mineur) ou la traque à mort (Majeur).' },
+  { id: 'rien_a_perdre', name: 'Rien à perdre', severity: 'Mineur', description: 'Prêt à tout sacrifier pour arriver à ses fins, adopte une attitude téméraire frôlant la folie.' },
+  { id: 'sale_caractere', name: 'Sale caractère', severity: 'Mineur', description: 'Aigri, sarcastique, rabat-joie : subit un malus permanent de -1 aux tests de Persuasion.' },
+  { id: 'sanguinaire', name: 'Sanguinaire', severity: 'Majeur', description: 'Ne fait aucun prisonnier et massacre les ennemis vaincus sans hésiter, terrifiant ses compagnons.' },
+  { id: 'sceptique', name: 'Sceptique', severity: 'Mineur', description: 'Refuse de croire aux rumeurs, au paranormal ou aux menaces invisibles, s’exposant sans protection.' },
+  { id: 'secret', name: 'Secret', severity: 'Mineur/Majeur', description: 'Dissimule une vérité embarrassante (Mineur) ou mortelle si découverte par les corpos (Majeur).' },
+  { id: 'serment', name: 'Serment', severity: 'Mineur/Majeur', description: 'Lié par un engagement sacré envers un culte, un clan, un syndicat ou une guide de mercenaires.' },
+  { id: 'susceptible', name: 'Susceptible', severity: 'Mineur/Majeur', description: 'Malus de -2 (Mineur) ou -4 (Majeur) aux jets pour résister aux Épreuves de Provocation.' },
+  { id: 'suspicieux', name: 'Suspicieux', severity: 'Mineur/Majeur', description: 'Méfiance maladive envers quiconque. Si Majeur, les alliés subissent un malus de -2 pour le Soutenir.' },
+  { id: 'tetu', name: 'Têtu', severity: 'Mineur', description: 'Refuse d’admettre ses torts, insiste pour mener ses idées à terme même quand elles ont échoué.' },
+  { id: 'timore', name: 'Timoré', severity: 'Mineur', description: 'Manque cruel d’assurance et présence effacée : subit un malus de -2 à tous les jets d’Intimidation.' },
+
+  // --- HANDICAPS CYBERPUNK (INTERFACE ZERO) ---
+  { id: 'dependance_slam', name: 'Dépendance Chimique (Slam / Boost)', severity: 'Majeur', description: 'Accro aux stimulants synaptiques cyberpunks. Subit tremblements et malus de -2 sans sa dose quotidienne.' },
+  { id: 'ennemi_corpo', name: 'Ennemi Mégacorpo', severity: 'Mineur/Majeur', description: 'Une corporation puissante (ex: Ravenlock, Zephyr) traque activement vos agissements dans la mégapole.' }
 ];

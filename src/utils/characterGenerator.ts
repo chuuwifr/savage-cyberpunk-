@@ -53,6 +53,21 @@ export function calculateDerivedStats(character: CharacterSheetData): Calculated
   for (const imp of character.implants) {
     if (imp.paceBonus) pace += imp.paceBonus;
   }
+  const hasVeloce = character.edges.some(e => e.id === 'veloce' || e.name.toLowerCase().includes('véloce'));
+  if (hasVeloce) {
+    pace += 2;
+    if (runningDie === 'd6') runningDie = 'd8';
+    else if (runningDie === 'd8') runningDie = 'd10';
+  }
+  const lentHindrance = character.hindrances.find(h => h.id === 'lent' || h.name.toLowerCase().includes('lent'));
+  if (lentHindrance) {
+    pace -= lentHindrance.severity === 'Majeur' ? 2 : 1;
+  }
+  const hasObese = character.hindrances.some(h => h.id === 'obese' || h.name.toLowerCase().includes('obèse'));
+  if (hasObese) {
+    pace -= 1;
+  }
+  pace = Math.max(1, pace);
 
   // 2. Parade (Parry)
   // Base 2 + (Combat / 2)
@@ -66,8 +81,15 @@ export function calculateDerivedStats(character: CharacterSheetData): Calculated
     if (imp.parryBonus) parry += imp.parryBonus;
   }
   // Edges parry bonus
+  const hasGrandBlocage = character.edges.some(e => e.id === 'grand_blocage' || e.name.toLowerCase().includes('grand blocage'));
   const hasBlocage = character.edges.some(e => e.id === 'blocage' || e.name.toLowerCase().includes('blocage'));
-  if (hasBlocage) parry += 1;
+  if (hasGrandBlocage) parry += 2;
+  else if (hasBlocage) parry += 1;
+
+  const hasArmeFetiche = character.edges.some(e => e.id === 'arme_fetiche_adoree' || e.name.toLowerCase().includes('arme fétiche adorée'));
+  const hasArmeFeticheBase = character.edges.some(e => e.id === 'arme_fetiche' || e.name.toLowerCase().includes('arme fétiche'));
+  if (hasArmeFetiche) parry += 2;
+  else if (hasArmeFeticheBase) parry += 1;
 
   const hasGuerrierAug = character.edges.some(e => e.id === 'guerrier_augmente' || e.name.toLowerCase().includes('guerrier augmenté'));
   if (hasGuerrierAug && character.implants.length > 0) parry += 1;
@@ -82,8 +104,24 @@ export function calculateDerivedStats(character: CharacterSheetData): Calculated
     toughnessBase -= 1;
   }
 
-  // Hindrance Chétif
-  const isChetif = character.hindrances.some(h => h.id === 'physique_chetif' || h.name.toLowerCase().includes('chétif'));
+  // Costaud, Obèse, Bagarreur, Cogneur
+  const hasCostaud = character.edges.some(e => e.id === 'costaud' || e.name.toLowerCase().includes('costaud'));
+  if (hasCostaud) toughnessBase += 1;
+
+  if (hasObese) toughnessBase += 1;
+
+  const hasCogneur = character.edges.some(e => e.id === 'cogneur' || e.name.toLowerCase().includes('cogneur'));
+  const hasBagarreur = character.edges.some(e => e.id === 'bagarreur' || e.name.toLowerCase().includes('bagarreur'));
+  if (hasCogneur) toughnessBase += 2;
+  else if (hasBagarreur) toughnessBase += 1;
+
+  // Hindrance Frêle / Chétif
+  const isChetif = character.hindrances.some(h => 
+    h.id === 'frele' || 
+    h.id === 'physique_chetif' || 
+    h.name.toLowerCase().includes('frêle') || 
+    h.name.toLowerCase().includes('chétif')
+  );
   if (isChetif) toughnessBase -= 1;
 
   if (hasGuerrierAug && character.implants.length > 0) toughnessBase += 1;
