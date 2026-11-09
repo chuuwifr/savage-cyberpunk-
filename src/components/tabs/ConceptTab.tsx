@@ -1,16 +1,28 @@
 import React from 'react';
 import { CharacterSheetData, PowerLevel } from '../../types/character';
 import { ARCHETYPES, POWER_LEVELS, RACES } from '../../data/interfaceZeroData';
-import { User, Shield, Terminal, BookOpen, Quote } from 'lucide-react';
+import { User, Shield, Terminal, BookOpen, Quote, TrendingUp, Coins, Sparkles, ChevronRight, Award, Wallet } from 'lucide-react';
+import { getRankFromAdvances, getRankProgress } from '../../utils/swadeRules';
 
 interface ConceptTabProps {
   character: CharacterSheetData;
   onChange: (updated: CharacterSheetData) => void;
+  onOpenAdvancementModal?: () => void;
+  onOpenBankModal?: () => void;
 }
 
-export const ConceptTab: React.FC<ConceptTabProps> = ({ character, onChange }) => {
+export const ConceptTab: React.FC<ConceptTabProps> = ({ 
+  character, 
+  onChange,
+  onOpenAdvancementModal,
+  onOpenBankModal 
+}) => {
   const currentRace = RACES.find(r => r.id === character.raceId) || RACES[0];
   const currentArchetype = ARCHETYPES.find(a => a.id === character.archetypeId) || ARCHETYPES[0];
+
+  const advancesCount = character.advancesCount || 0;
+  const currentRank = character.rank || getRankFromAdvances(advancesCount);
+  const rankProgress = getRankProgress(advancesCount);
 
   const handleTextChange = (field: keyof CharacterSheetData, value: any) => {
     onChange({ ...character, [field]: value });
@@ -141,22 +153,123 @@ export const ConceptTab: React.FC<ConceptTabProps> = ({ character, onChange }) =
             </select>
           </div>
 
-          {/* Rang & Avancées */}
+          {/* Rang SWADE Actuel */}
           <div>
             <label className="block text-xs font-mono-tech text-slate-400 uppercase mb-1">
-              Rang SWADE
+              Rang SWADE Actuel
             </label>
             <select
               value={character.rank}
               onChange={e => handleTextChange('rank', e.target.value)}
               className="w-full bg-[#070b10] border border-slate-700 rounded px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-cyan-400 font-mono-tech"
             >
-              <option value="Novice">Novice (0-3 avancées)</option>
-              <option value="Aguerri">Aguerri (4-7 avancées)</option>
-              <option value="Vétéran">Vétéran (8-11 avancées)</option>
-              <option value="Héroïque">Héroïque (12-15 avancées)</option>
-              <option value="Légendaire">Légendaire (16+ avancées)</option>
+              <option value="Novice">Novice (0-3 av.)</option>
+              <option value="Aguerri">Aguerri (4-7 av.)</option>
+              <option value="Vétéran">Vétéran (8-11 av.)</option>
+              <option value="Héroïque">Héroïque (12-15 av.)</option>
+              <option value="Légendaire">Légendaire (16+ av.)</option>
             </select>
+          </div>
+        </div>
+
+        {/* Interactive SWADE Progression & Malmart Bank Hub */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 pt-4 border-t border-slate-800">
+          {/* SWADE Advancement Interactive Card */}
+          <div className="bg-[#070b10] border border-cyan-500/30 rounded-lg p-3.5 flex flex-col justify-between hover:border-cyan-400/60 transition group">
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <TrendingUp className="w-4 h-4 text-cyan-400" />
+                  <span className="text-xs font-mono-tech text-cyan-300 font-bold uppercase tracking-wider">
+                    Progression SWADE (Règles p. 54)
+                  </span>
+                </div>
+                <span className="text-xs px-2 py-0.5 rounded font-mono-tech font-bold bg-cyan-950 text-cyan-300 border border-cyan-800">
+                  {currentRank} • {advancesCount} Avancée{advancesCount > 1 ? 's' : ''}
+                </span>
+              </div>
+              
+              {/* Progress Bar */}
+              <div className="w-full bg-slate-900 h-2 rounded-full overflow-hidden border border-slate-800 my-2">
+                <div 
+                  className="bg-gradient-to-r from-cyan-500 to-emerald-400 h-full rounded-full transition-all duration-300"
+                  style={{ width: `${rankProgress.percent}%` }}
+                />
+              </div>
+
+              <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono-tech">
+                <span>Avancées dans ce rang : <strong className="text-slate-200">{rankProgress.currentInRank}/{rankProgress.requiredInRank}</strong></span>
+                <span>Prochain rang : <strong className="text-cyan-400">{rankProgress.nextRank || 'Plafond Max'}</strong></span>
+              </div>
+            </div>
+
+            <div className="mt-3 flex items-center justify-between pt-2 border-t border-slate-800/80">
+              <span className="text-[11px] text-slate-500 font-mono-tech">
+                {character.advancesHistory && character.advancesHistory.length > 0 
+                  ? `${character.advancesHistory.length} progression(s) validée(s)`
+                  : 'Aucune progression enregistrée'}
+              </span>
+              {onOpenAdvancementModal && (
+                <button
+                  type="button"
+                  onClick={onOpenAdvancementModal}
+                  className="px-3 py-1 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 hover:border-cyan-400 rounded text-xs font-mono-tech flex items-center gap-1.5 transition cursor-pointer"
+                >
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Gérer l'Avancement</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Malmart Bank Balance Interactive Card */}
+          <div className="bg-[#070b10] border border-amber-500/30 rounded-lg p-3.5 flex flex-col justify-between hover:border-amber-400/60 transition group">
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <Wallet className="w-4 h-4 text-amber-400" />
+                  <span className="text-xs font-mono-tech text-amber-300 font-bold uppercase tracking-wider">
+                    Compte Malmart Bank
+                  </span>
+                </div>
+                <span className="text-xs px-2 py-0.5 rounded font-mono-tech font-bold bg-amber-950/80 text-amber-300 border border-amber-800/80">
+                  ID: #{character.id.slice(-6).toUpperCase()}
+                </span>
+              </div>
+
+              <div className="flex items-baseline justify-between mt-1 mb-2">
+                <div>
+                  <div className="text-[10px] text-slate-400 font-mono-tech uppercase">Solde Disponible</div>
+                  <div className="text-2xl font-bold font-orbitron text-amber-400">
+                    {character.credits.toLocaleString()} <span className="text-xs text-amber-500/80 font-mono-tech">crédits</span>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-[10px] text-slate-400 font-mono-tech uppercase">Transactions</div>
+                  <div className="text-xs font-mono-tech text-slate-300">
+                    {character.bankHistory ? character.bankHistory.length : 0} opération(s)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-3 flex items-center justify-between pt-2 border-t border-slate-800/80">
+              <span className="text-[11px] text-slate-500 font-mono-tech">
+                Prêts, primes de contrat & saisie libre
+              </span>
+              {onOpenBankModal && (
+                <button
+                  type="button"
+                  onClick={onOpenBankModal}
+                  className="px-3 py-1 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:border-amber-400 rounded text-xs font-mono-tech flex items-center gap-1.5 transition cursor-pointer"
+                >
+                  <Coins className="w-3.5 h-3.5" />
+                  <span>Personnaliser le Solde</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>

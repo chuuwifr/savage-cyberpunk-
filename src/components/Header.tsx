@@ -13,7 +13,9 @@ import {
   Shield,
   Crosshair,
   User,
-  Sparkles
+  Sparkles,
+  Coins,
+  TrendingUp
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -24,6 +26,8 @@ interface HeaderProps {
   onOpenRandomModal: () => void;
   activeTab: string;
   onTabChange: (tab: string) => void;
+  onOpenBankModal?: () => void;
+  onOpenAdvancementModal?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -33,7 +37,9 @@ export const Header: React.FC<HeaderProps> = ({
   onCreateNew,
   onOpenRandomModal,
   activeTab,
-  onTabChange
+  onTabChange,
+  onOpenBankModal,
+  onOpenAdvancementModal
 }) => {
   const [isExporting, setIsExporting] = useState<boolean>(false);
   const [exportSuccess, setExportSuccess] = useState<boolean>(false);
@@ -107,6 +113,32 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Action Controls */}
         <div className="flex flex-wrap items-center gap-2">
+          {/* Malmart Bank Balance Quick Access */}
+          {onOpenBankModal && (
+            <button
+              type="button"
+              onClick={onOpenBankModal}
+              className="px-3 py-1.5 bg-[#0b1017] border border-amber-500/50 hover:border-amber-400 text-amber-400 rounded text-xs font-mono-tech font-bold flex items-center gap-1.5 shadow-sm shadow-amber-500/10 transition cursor-pointer"
+              title="Gérer et personnaliser le solde Malmart Bank"
+            >
+              <Coins className="w-4 h-4 text-amber-400" />
+              <span>{activeCharacter.credits.toLocaleString()} cr</span>
+            </button>
+          )}
+
+          {/* SWADE Rank & Advances Quick Access */}
+          {onOpenAdvancementModal && (
+            <button
+              type="button"
+              onClick={onOpenAdvancementModal}
+              className="px-3 py-1.5 bg-[#0b1017] border border-cyan-500/50 hover:border-cyan-400 text-cyan-300 rounded text-xs font-mono-tech font-bold flex items-center gap-1.5 shadow-sm shadow-cyan-500/10 transition cursor-pointer"
+              title="Gérer la progression et les avancées SWADE"
+            >
+              <TrendingUp className="w-4 h-4 text-cyan-400" />
+              <span>{activeCharacter.rank} ({activeCharacter.advances || 0})</span>
+            </button>
+          )}
+
           {/* Quick random generator */}
           <button
             type="button"

@@ -206,3 +206,114 @@ test('Cyberpunk & Interface Zero Compendium has 320+ items and equips correctly'
   assert.strictEqual(resArmor.updatedChar.armor[0].armorBonus, 6);
 });
 
+test('SWADE Experience System: Advances and Ranks conform strictly to p. 54', async () => {
+  const { 
+    getRankFromAdvances, 
+    getRankProgress, 
+    canIncreaseAttributeInRank, 
+    applySWADEAdvance 
+  } = await import('../src/utils/swadeRules.ts');
+
+  // Verify rank progression thresholds
+  assert.strictEqual(getRankFromAdvances(0), 'Novice');
+  assert.strictEqual(getRankFromAdvances(1), 'Novice');
+  assert.strictEqual(getRankFromAdvances(3), 'Novice');
+  assert.strictEqual(getRankFromAdvances(4), 'Aguerri');
+  assert.strictEqual(getRankFromAdvances(7), 'Aguerri');
+  assert.strictEqual(getRankFromAdvances(8), 'Vétéran');
+  assert.strictEqual(getRankFromAdvances(11), 'Vétéran');
+  assert.strictEqual(getRankFromAdvances(12), 'Héroïque');
+  assert.strictEqual(getRankFromAdvances(15), 'Héroïque');
+  assert.strictEqual(getRankFromAdvances(16), 'Légendaire');
+  assert.strictEqual(getRankFromAdvances(25), 'Légendaire');
+
+  // Verify rank progress calculation
+  const progNovice2 = getRankProgress(2);
+  assert.strictEqual(progNovice2.currentRank, 'Novice');
+  assert.strictEqual(progNovice2.currentInRank, 2);
+  assert.strictEqual(progNovice2.requiredInRank, 4);
+  assert.strictEqual(progNovice2.percent, 50);
+  assert.strictEqual(progNovice2.nextRank, 'Aguerri');
+
+  const progAguerri5 = getRankProgress(5);
+  assert.strictEqual(progAguerri5.currentRank, 'Aguerri');
+  assert.strictEqual(progAguerri5.currentInRank, 1);
+  assert.strictEqual(progAguerri5.percent, 25);
+
+  // Verify SWADE core rule: strictly 1 attribute increase per Rank
+  const char = createEmptyCharacter();
+  char.advancesCount = 2; // Novice
+  char.rank = 'Novice';
+  char.attributes.agilite = 'd6';
+
+  // Initially, attribute increase is allowed
+  assert.strictEqual(canIncreaseAttributeInRank(char), true);
+
+  // Apply Attribute increase in Novice
+  const advancedChar1 = applySWADEAdvance(char, {
+    type: 'attribute',
+    description: 'Augmentation Agilité d6 -> d8',
+    targetAttribute: 'agilite'
+  });
+  assert.strictEqual(advancedChar1.advancesCount, 3);
+  assert.strictEqual(advancedChar1.attributes.agilite, 'd8');
+  assert.strictEqual(advancedChar1.advancesHistory?.length, 1);
+
+  // Immediately trying to increase another attribute in Novice should be disallowed
+  assert.strictEqual(canIncreaseAttributeInRank(advancedChar1), false);
+  assert.throws(() => {
+    applySWADEAdvance(advancedChar1, {
+      type: 'attribute',
+      description: 'Deuxième attribut dans le même rang interdit',
+      targetAttribute: 'vigueur'
+    });
+  }, /Un seul attribut peut être augmenté par rang/);
+
+  // Bump into Aguerri (4 advances) -> attribute increase should now be allowed again!
+  const aguerriChar = { ...advancedChar1, advancesCount: 4, rank: 'Aguerri' as const };
+  assert.strictEqual(canIncreaseAttributeInRank(aguerriChar), true);
+
+  // Apply 2 skills below linked attribute advance
+  aguerriChar.attributes.agilite = 'd8';
+  aguerriChar.skills['Tir'] = 'd4';
+  aguerriChar.skills['Combat'] = 'd6';
+  const advancedSkills = applySWADEAdvance(aguerriChar, {
+    type: 'two_skills_under_attr',
+    description: 'Augmentation Tir et Combat',
+    targetSkills: ['Tir', 'Combat']
+  });
+  assert.strictEqual(advancedSkills.skills['Tir'], 'd6');
+  assert.strictEqual(advancedSkills.skills['Combat'], 'd8');
+  assert.strictEqual(advancedSkills.advancesCount, 5);
+});
+
+test('Malmart Bank Customization & Transaction History', async () => {
+  const { recordBankTransaction, BANK_PRESETS } = await import('../src/utils/swadeRules.ts');
+
+  const char = createEmptyCharacter();
+  char.credits = 2500;
+
+  // Preset check
+  assert.ok(BANK_PRESETS.length >= 6);
+  assert.strictEqual(BANK_PRESETS.find(p => p.id === 'novice_standard')?.amount, 2500);
+  assert.strictEqual(BANK_PRESETS.find(p => p.id === 'veteran')?.amount, 10000);
+
+  // Record mission reward
+  const payout = recordBankTransaction(char, 3500, 'Prime contrat d’extraction Arasaka', 'mission');
+  assert.strictEqual(payout.credits, 6000);
+  assert.strictEqual(payout.bankHistory?.length, 1);
+  assert.strictEqual(payout.bankHistory[0].amount, 3500);
+  assert.strictEqual(payout.bankHistory[0].newBalance, 6000);
+
+  // Record gear purchase
+  const purchase = recordBankTransaction(payout, -1200, 'Achat munitions perforantes et medkit', 'purchase');
+  assert.strictEqual(purchase.credits, 4800);
+  assert.strictEqual(purchase.bankHistory?.length, 2);
+  assert.strictEqual(purchase.bankHistory[1].amount, -1200);
+
+  // Custom balance override with history tracking
+  const resetBal = recordBankTransaction(purchase, 50000, 'Subvention spéciale Syndicat', 'custom_set');
+  assert.strictEqual(resetBal.credits, 50000);
+  assert.strictEqual(resetBal.bankHistory?.length, 3);
+});
+

@@ -31,9 +31,14 @@ import {
 interface EquipmentTabProps {
   character: CharacterSheetData;
   onChange: (updated: CharacterSheetData) => void;
+  onOpenBankModal?: () => void;
 }
 
-export const EquipmentTab: React.FC<EquipmentTabProps> = ({ character, onChange }) => {
+export const EquipmentTab: React.FC<EquipmentTabProps> = ({ 
+  character, 
+  onChange,
+  onOpenBankModal 
+}) => {
   const [viewMode, setViewMode] = useState<'compendium' | 'active_inventory'>('compendium');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedRarity, setSelectedRarity] = useState<string>('all');
@@ -211,11 +216,20 @@ export const EquipmentTab: React.FC<EquipmentTabProps> = ({ character, onChange 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {/* Solde Crédits */}
         <div className="bg-[#0b1017] border border-cyan-500/40 rounded-lg p-3.5 flex items-center justify-between shadow-lg shadow-cyan-950/20">
-          <div className="flex items-center gap-2.5">
-            <Coins className="w-5 h-5 text-amber-400" />
+          <div 
+            onClick={onOpenBankModal}
+            className={`flex items-center gap-2.5 ${onOpenBankModal ? 'cursor-pointer group' : ''}`}
+            title={onOpenBankModal ? 'Ouvrir Malmart Bank pour personnaliser' : undefined}
+          >
+            <Coins className="w-5 h-5 text-amber-400 group-hover:scale-110 transition shrink-0" />
             <div>
-              <div className="text-[10px] text-slate-400 font-mono-tech uppercase tracking-wider">Solde Malmart Bank</div>
-              <div className="text-xl font-bold font-orbitron text-amber-400">
+              <div className="text-[10px] text-slate-400 font-mono-tech uppercase tracking-wider flex items-center gap-1.5">
+                <span>Solde Malmart Bank</span>
+                {onOpenBankModal && (
+                  <span className="text-[9px] text-cyan-400 group-hover:underline font-mono-tech">[Gérer]</span>
+                )}
+              </div>
+              <div className="text-xl font-bold font-orbitron text-amber-400 group-hover:text-amber-300 transition">
                 {character.credits.toLocaleString()} <span className="text-xs text-amber-500/80">cr</span>
               </div>
             </div>
@@ -237,6 +251,16 @@ export const EquipmentTab: React.FC<EquipmentTabProps> = ({ character, onChange 
             >
               +500
             </button>
+            {onOpenBankModal && (
+              <button
+                type="button"
+                onClick={onOpenBankModal}
+                className="px-2 py-1 bg-cyan-950/80 border border-cyan-600/50 rounded text-xs text-cyan-300 hover:text-white hover:border-cyan-400 cursor-pointer transition font-mono-tech ml-0.5"
+                title="Gérer les fonds, transactions et presets Malmart Bank"
+              >
+                Banque
+              </button>
+            )}
           </div>
         </div>
 

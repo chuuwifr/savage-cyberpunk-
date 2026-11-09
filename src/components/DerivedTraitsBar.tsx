@@ -6,9 +6,16 @@ import { Shield, Zap, Activity, Cpu, Award, Weight, HeartPulse } from 'lucide-re
 interface DerivedTraitsBarProps {
   character: CharacterSheetData;
   onUpdateCharacter?: (updated: CharacterSheetData) => void;
+  onOpenAdvancementModal?: () => void;
+  onOpenBankModal?: () => void;
 }
 
-export const DerivedTraitsBar: React.FC<DerivedTraitsBarProps> = ({ character, onUpdateCharacter }) => {
+export const DerivedTraitsBar: React.FC<DerivedTraitsBarProps> = ({ 
+  character, 
+  onUpdateCharacter,
+  onOpenAdvancementModal,
+  onOpenBankModal
+}) => {
   const stats = calculateDerivedStats(character);
 
   const strainRatio = Math.min(100, Math.round((stats.strainCurrent / Math.max(1, stats.strainMax)) * 100));
@@ -113,22 +120,45 @@ export const DerivedTraitsBar: React.FC<DerivedTraitsBarProps> = ({ character, o
           <div className="text-[10px] text-slate-500 mt-1">Bouclier cybernétique</div>
         </div>
 
-        {/* Street Cred */}
-        <div className="bg-[#0f1722] border border-slate-800 rounded p-2.5 flex flex-col justify-between hover:border-cyan-500/50 transition">
+        {/* Street Cred & SWADE Rang */}
+        <div 
+          onClick={onOpenAdvancementModal}
+          className={`bg-[#0f1722] border border-slate-800 rounded p-2.5 flex flex-col justify-between transition ${
+            onOpenAdvancementModal ? 'cursor-pointer hover:border-pink-500/60 hover:bg-[#131d2b]' : ''
+          }`}
+          title="Cliquez pour gérer la progression et les avancées SWADE"
+        >
           <div className="flex items-center justify-between text-xs text-cyan-400 font-mono-tech uppercase">
             <span>Street Cred</span>
             <Award className="w-3.5 h-3.5 text-pink-400" />
           </div>
-          <div className="mt-1 flex items-baseline gap-1.5">
+          <div className="mt-1 flex items-baseline justify-between">
             <span className="text-2xl font-bold font-orbitron text-pink-400">{stats.streetCred}</span>
-            <span className="text-xs text-slate-400 font-mono-tech">{character.rank}</span>
+            <span className="text-xs text-slate-300 font-mono-tech font-bold bg-pink-950/60 border border-pink-500/40 px-1.5 py-0.5 rounded">
+              {character.rank}
+            </span>
           </div>
-          <div className="text-[10px] text-slate-500 mt-1">Réputation des bas-fonds</div>
+          <div className="text-[10px] text-slate-400 mt-1 flex items-center justify-between">
+            <span>{character.advances || 0} avancée(s)</span>
+            {onOpenAdvancementModal && <span className="text-pink-400 font-bold hover:underline">Gérer ›</span>}
+          </div>
         </div>
       </div>
 
-      {/* Bottom row: Wounds, Fatigue, Bennies, Encumbrance */}
+      {/* Bottom row: Wounds, Fatigue, Bennies, Encumbrance, Bank & Advances */}
       <div className="mt-3 pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-4 text-xs font-mono-tech">
+        {/* Solde Bank Quick Access */}
+        {onOpenBankModal && (
+          <button
+            type="button"
+            onClick={onOpenBankModal}
+            className="flex items-center gap-1.5 text-amber-400 hover:text-amber-300 font-mono-tech text-xs bg-[#090e15] border border-amber-500/40 hover:border-amber-400 px-2.5 py-1 rounded cursor-pointer transition shadow-sm"
+            title="Ouvrir le terminal Malmart Bank pour personnaliser vos crédits"
+          >
+            <span>Banque :</span>
+            <span className="font-bold font-orbitron">{character.credits.toLocaleString()} cr</span>
+          </button>
+        )}
         {/* Blessures */}
         <div className="flex items-center gap-2">
           <span className="text-slate-400 flex items-center gap-1">

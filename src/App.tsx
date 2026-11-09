@@ -16,12 +16,16 @@ import { ImplantsTab } from './components/tabs/ImplantsTab';
 import { EquipmentTab } from './components/tabs/EquipmentTab';
 import { EdgesHindrancesTab } from './components/tabs/EdgesHindrancesTab';
 import { SavedBuildsTab } from './components/tabs/SavedBuildsTab';
+import { MalmartBankModal } from './components/MalmartBankModal';
+import { SWADEAdvancementModal } from './components/SWADEAdvancementModal';
 
 export default function App() {
   const [characters, setCharacters] = useState<CharacterSheetData[]>([]);
   const [activeCharacterId, setActiveCharId] = useState<string>('');
   const [activeTab, setActiveTab] = useState<string>('concept');
   const [isRandomModalOpen, setIsRandomModalOpen] = useState<boolean>(false);
+  const [isBankModalOpen, setIsBankModalOpen] = useState<boolean>(false);
+  const [isAdvancementModalOpen, setIsAdvancementModalOpen] = useState<boolean>(false);
 
   // Initialize from localStorage on mount
   useEffect(() => {
@@ -97,6 +101,8 @@ export default function App() {
         onOpenRandomModal={() => setIsRandomModalOpen(true)}
         activeTab={activeTab}
         onTabChange={setActiveTab}
+        onOpenBankModal={() => setIsBankModalOpen(true)}
+        onOpenAdvancementModal={() => setIsAdvancementModalOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -105,6 +111,8 @@ export default function App() {
         <DerivedTraitsBar
           character={activeCharacter}
           onUpdateCharacter={handleUpdateActiveCharacter}
+          onOpenAdvancementModal={() => setIsAdvancementModalOpen(true)}
+          onOpenBankModal={() => setIsBankModalOpen(true)}
         />
 
         {/* Tab views */}
@@ -113,6 +121,8 @@ export default function App() {
             <ConceptTab
               character={activeCharacter}
               onChange={handleUpdateActiveCharacter}
+              onOpenAdvancementModal={() => setIsAdvancementModalOpen(true)}
+              onOpenBankModal={() => setIsBankModalOpen(true)}
             />
           )}
 
@@ -134,6 +144,7 @@ export default function App() {
             <EquipmentTab
               character={activeCharacter}
               onChange={handleUpdateActiveCharacter}
+              onOpenBankModal={() => setIsBankModalOpen(true)}
             />
           )}
 
@@ -174,6 +185,22 @@ export default function App() {
         isOpen={isRandomModalOpen}
         onClose={() => setIsRandomModalOpen(false)}
         onCharacterGenerated={handleCharacterGenerated}
+      />
+
+      {/* Malmart Bank Balance & Transactions Modal */}
+      <MalmartBankModal
+        isOpen={isBankModalOpen}
+        onClose={() => setIsBankModalOpen(false)}
+        character={activeCharacter}
+        onChange={handleUpdateActiveCharacter}
+      />
+
+      {/* SWADE Experience & Advancement Modal */}
+      <SWADEAdvancementModal
+        isOpen={isAdvancementModalOpen}
+        onClose={() => setIsAdvancementModalOpen(false)}
+        character={activeCharacter}
+        onChange={handleUpdateActiveCharacter}
       />
     </div>
   );

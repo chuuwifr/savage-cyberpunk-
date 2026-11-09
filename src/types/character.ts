@@ -218,6 +218,10 @@ export interface CharacterSheetData {
   tapModel: string;
   tapApps: string[];
 
+  // Bank & Experience System (SWADE rules)
+  bankHistory?: BankTransaction[];
+  advancesHistory?: SWADEAdvance[];
+
   // Derived Traits calculation overrides/states
   wounds: number; // max 3
   fatigue: number; // max 2
@@ -227,6 +231,34 @@ export interface CharacterSheetData {
 
   createdAt: number;
   updatedAt: number;
+}
+
+export interface BankTransaction {
+  id: string;
+  amount: number;
+  label: string;
+  category: 'mission' | 'loot' | 'equipment' | 'cyberware' | 'bribe' | 'medical' | 'adjustment';
+  date: number;
+  balanceAfter: number;
+}
+
+export interface SWADEAdvance {
+  id: string;
+  advanceNumber: number;
+  rank: 'Novice' | 'Aguerri' | 'Vétéran' | 'Héroïque' | 'Légendaire';
+  type: 'edge' | 'attribute' | 'two_skills_under' | 'one_skill_equal_or_over' | 'remove_hindrance' | 'custom';
+  description: string;
+  date: number;
+  details?: {
+    edgeId?: string;
+    edgeName?: string;
+    attribute?: keyof CharacterAttributes;
+    oldDie?: DieType;
+    newDie?: DieType;
+    skillsIncreased?: Array<{ name: string; oldDie: string; newDie: string }>;
+    hindranceId?: string;
+    hindranceName?: string;
+  };
 }
 
 export interface CalculatedDerivedStats {
